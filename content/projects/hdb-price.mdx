@@ -1,0 +1,33 @@
+# HDB Price MCP
+
+2025. A weekend project to explore MCPs (Model Context Protocol) — built something useful in the process.
+
+## the idea
+
+MCP lets AI assistants call external tools directly. I wanted to understand how it worked, and I wanted to build something with real data. Singapore's HDB resale transaction records are public, go back to 1990, and cover every flat sale in the country. That's a good dataset to query.
+
+The question: could I ask an AI assistant "what's the median price of a 4-room flat in Tampines?" and get a real answer backed by actual transaction data?
+
+## what was built
+
+Three repos, three layers:
+
+**hdb-price-db** — the data pipeline. Downloaded raw HDB resale CSVs from data.gov.sg covering 1990–2025, consolidated five separate files (different date ranges, different schemas) into a single clean dataset using Jupyter notebooks, then loaded it into Supabase.
+
+**hdb-price-api** — a FastAPI backend deployed on Render.com. Single endpoint: query by town, flat type, flat model, and date range. Returns average, min, max, p50, and p90 prices plus transaction count. Backed by a Supabase RPC function for efficient aggregation.
+
+**hdb-price-mcp** — wraps the API as an MCP server. Registered as a tool so AI assistants (Claude, Cursor, etc.) can call it mid-conversation to fetch real price data on demand.
+
+## stack
+
+- Python, FastAPI, Uvicorn
+- Supabase (PostgreSQL + RPC functions)
+- Render.com (API hosting)
+- Jupyter (data transformation)
+- MCP SDK
+
+## what i learned
+
+MCP is a clean abstraction once you get past the setup. The interesting part isn't the protocol — it's that the quality of your tool depends almost entirely on the quality of your data and your API design. A well-structured endpoint with good filtering makes the AI's answers dramatically better.
+
+The HDB dataset itself is fascinating. 35 years of flat transactions across every town in Singapore. Price trends, estate maturity effects, flat type premiums — all queryable in a few seconds.

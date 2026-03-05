@@ -1,0 +1,61 @@
+# QUAIL
+
+**Quantum Understanding and AI for Interpretability and Learning.**
+
+May 2025. FLIQ Virtual Hackathon — organised by the Quantum Coalition, ITU, and the International Year of Quantum Science and Technology, powered by IonQ. Didn't place.
+
+## the problem
+
+Drug-induced autoimmunity (DIA) is a serious and poorly understood side effect of certain pharmaceutical compounds — the drug triggers the immune system to attack the body's own tissue. Predicting which compounds might cause this before clinical trials is a hard classification problem with real stakes.
+
+![drug-induced autoimmunity](/assets/projects/quail/dia-illustration.jpg)
+
+Classical ML models can do it, but they're black boxes. You get a prediction; you don't get to know *why* a molecule was flagged. The prior art we built on was InterDIA, an ensemble ML approach from the literature — interpretable, but classical.
+
+![InterDIA reference paper](/assets/projects/quail/interdia-reference.png)
+
+For pharmaceutical safety decisions, interpretability isn't optional. We wanted to see if a quantum approach could match classical performance while being explainable.
+
+## what we built
+
+QUAIL is a hybrid quantum-classical architecture:
+
+1. **Classical dimensionality reduction** — 196 RDKit molecular descriptors compressed to 2–6 features via a trained linear layer
+2. **Variational Quantum Classifier** — the reduced features are encoded into a parameterised quantum circuit (ZZFeatureMap + RealAmplitudes ansatz) running on 2–6 qubits using Qiskit's StatevectorEstimator
+3. **Classical output layer** — standard classification head on top of the quantum circuit's output
+
+Dataset: 477 molecules with binary DIA labels.
+
+## the data
+
+The 196 molecular descriptors are highly correlated — understanding the feature space was an important first step before deciding what to reduce and how.
+
+![feature correlation heatmap](/assets/projects/quail/feature-correlation.png)
+
+## baseline
+
+We benchmarked against Logistic Regression and Random Forest. The Random Forest feature importance gave us a classical reference for which molecular properties actually matter for DIA prediction.
+
+![random forest feature importance](/assets/projects/quail/rf-feature-importance.png)
+
+## the novel contribution: IPA
+
+The more interesting part was the interpretability method.
+
+Quantum models are even more opaque than classical neural networks. We developed **Input Perturbation Attribution (IPA)**: perturb each PCA-reduced feature by a small angle, measure the change in prediction probability, assign an importance score, then use PCA loading weights to map those scores back to the original 196 chemical descriptors.
+
+The result: a molecular-level explanation of why a compound was flagged — expressed in terms of chemical features a pharmaceutical scientist can actually act on.
+
+![IPA + PCA feature importance](/assets/projects/quail/ipa-pca-importance.png)
+
+As far as we could find, this combination of VQC + IPA + PCA back-projection for quantum model interpretability hadn't been demonstrated in the existing literature.
+
+## stack
+
+Python, PyTorch, Qiskit 1.x, RDKit, scikit-learn
+
+## reflection
+
+Quantum ML is still very early. The VQC didn't outperform Random Forest — that wasn't really the point. The point was whether quantum models could be made explainable in a domain-relevant way. I think we showed they can.
+
+I came into this knowing essentially nothing about quantum computing. Left knowing just enough to appreciate how much I still don't know.

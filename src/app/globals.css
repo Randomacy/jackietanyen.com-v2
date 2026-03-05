@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    text-transform: lowercase;
+  }
+
+  /* Exceptions where we want natural casing */
+  .preserve-case,
+  .preserve-case * {
+    text-transform: none;
+  }
+
+  html {
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    background-color: #0d0d0d;
+    color: #d4d4d4;
+    font-size: 150%;
+  }
+
+  body {
+    background-color: #0d0d0d;
+    color: #d4d4d4;
+    min-height: 100vh;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  ::selection {
+    background-color: #e53e3e;
+    color: #0d0d0d;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d0d0d;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #444;
+  }
+}
+
+@layer components {
+  .terminal-link {
+    @apply text-terminal-text hover:text-terminal-accent transition-colors duration-150 underline-offset-2 hover:underline;
+  }
+
+  .blinking-cursor::after {
+    content: '█';
+    animation: blink 1s step-end infinite;
+  }
+}

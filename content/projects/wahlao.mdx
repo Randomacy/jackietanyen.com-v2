@@ -1,0 +1,27 @@
+# Wahlao
+
+March 2025. An AI tool for SMEs to stay in touch with their customers without the overhead of a marketing team.
+
+## the idea
+
+Small businesses — especially in F&B, retail, and services — have customer relationships that live entirely in the owner's head. They know who's a regular. They know when events or promotions are coming up. They just never have the time or resources to act on that knowledge consistently.
+
+Wahlao connected to a business's Google Calendar, read upcoming events, and used an LLM to draft personalised WhatsApp messages to send to their customer base. The right message, to the right people, at the right time — without needing a marketing hire.
+
+## what was built
+
+- **Passwordless auth** — email magic link sign-in via Supabase, no passwords
+- **Onboarding flow** — captured business type, use case, and goals on first login
+- **Google Calendar sync** — pulled upcoming events with change detection, stored in Supabase
+- **Customer data ingestion** — CSV/Excel upload for customer lists
+- **LLM-powered drafting** — generated WhatsApp messages from calendar context + business instructions
+- **Brand guidelines** — stored business tone and style to inform generation
+- **WhatsApp distribution** — converted drafts into sendable WhatsApp messages
+
+Stack: Next.js 15, TypeScript, Supabase (auth + DB + storage), Google Calendar API, Tailwind CSS.
+
+## what happened
+
+I shut it down. There was one SME I worked closely with — the workflow genuinely helped them — but I couldn't find strong validation beyond that single case. One customer is a proof of concept, not a business.
+
+The core loop was sound. The distribution problem — getting SME owners to trust an AI to write messages to their customers — was harder than the technical side. That's a sales and trust problem, and it would have taken longer to crack than I was willing to invest without clearer signal.
