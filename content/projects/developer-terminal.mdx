@@ -1,0 +1,57 @@
+# Developer Terminal
+
+Early 2023. Built as Head of Product at AngelHack, which was part of Tribe — the company that had acquired my previous startup UpLevel. The brief came from the CEO of Tribe: build a dashboard that measures developer activity across the web3 ecosystem.
+
+## the problem
+
+AngelHack runs hackathons and developer communities. The question was: where is developer talent actually moving in web3? Which protocols are growing their contributor base, which are stagnating, and what does the shape of a healthy developer ecosystem look like?
+
+There was no clean answer to this — existing tools showed token prices and TVL but not the humans building the underlying infrastructure.
+
+## what I built
+
+Developer Terminal is a three-part system: a data pipeline, an API, and a dashboard.
+
+**tribentriberminal — data pipeline**
+
+A series of Jupyter notebooks that:
+1. Load Token Terminal's ecosystem list (~157 web3 protocols — Ethereum, Cardano, Polkadot, Aave, Uniswap, Zora, etc.)
+2. Pull each ecosystem's GitHub org repos via the GitHub API (~9,470 repos total)
+3. Collect every commit from every repo — ~7 million commits scraped
+4. Segment developers by contribution frequency per month: one-time, part-time (2–9 commits), and full-time (10+)
+5. Produce monthly time-series data from 2015 to 2023
+
+Key findings from the data: in January 2023, Ethereum led ecosystem developer count with 225 unique contributors in the trailing 30 days, followed by Cardano (180) and Polkadot (179). At peak, the dataset tracked 4,688 active developers in December 2022.
+
+**developerterminal-cron-v2 — daily ingestion**
+
+A Python cron job deployed on Google Cloud (asia-southeast1) that runs daily, pulling the previous day's commits across all tracked repos and writing new records into a normalized PostgreSQL schema on Cloud SQL:
+
+- `organization` — the 157 web3 ecosystems
+- `commit_url` — individual repo commit endpoints
+- `developer` — unique contributor records (name + email)
+- `commit` — daily commit records linked to all three above
+
+Deduplicates on each run so the database stays clean.
+
+**developerterminal-api-v2 — backend**
+
+A FastAPI service (Dockerized) that exposes the processed commit data for the dashboard.
+
+**developerterminal — React dashboard**
+
+Built on top of Horizon UI (Chakra UI), with custom components for:
+- Monthly new developer counts (line chart)
+- Developer segmentation by contribution level (one-time / part-time / full-time)
+- Ecosystem rankings by developer count
+- Language and protocol social media trends (Google Trends, Twitter/Reddit volume — the CEO's feature requests)
+
+## stack
+
+Python, pandas, GitHub API — data pipeline. PostgreSQL, Google Cloud SQL — database. FastAPI, Docker — backend. React, Chakra UI, Horizon UI — dashboard.
+
+## what happened
+
+The dashboard was built and delivered internally at AngelHack. It was the foundation for a broader developer intelligence product that Tribe was exploring — mapping where developer talent flows across web3 ecosystems as a leading indicator of protocol health.
+
+Source on [GitHub](https://github.com/Randomacy/tribentriberminal).

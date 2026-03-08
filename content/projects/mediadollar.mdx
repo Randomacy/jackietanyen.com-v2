@@ -1,0 +1,37 @@
+# MediaDollar
+
+December 2023. The data layer for BorderDollar — a startup exploring credit risk scoring for maritime trade finance.
+
+## the problem
+
+Credit risk in maritime trade is hard to price. Counterparties span multiple jurisdictions, geopolitical shocks move fast, and most of the signal lives in industry news — not structured data. BorderDollar needed a way to continuously monitor maritime and shipping news to surface risk signals for a future NLP scoring pipeline.
+
+## what I built
+
+MediaDollar is a three-part system: a scraper, an API, and a dashboard.
+
+**MediaDollarDB** — a Python script running on a 6-hour GitHub Actions cron that pulls RSS feeds from six maritime publications:
+- Splash247
+- The Maritime Executive
+- Ship & Bunker
+- Manifold Times
+- FreightWaves
+- Hellenic Shipping News Worldwide
+
+Each article is parsed, deduplicated by title, and written to a PostgreSQL database.
+
+**MediaDollarAPI** — a FastAPI backend deployed on Vercel, exposing a paginated `/latest` endpoint returning articles sorted by recency.
+
+**MediaDollarApp** — a React dashboard (Chakra UI) showing a consolidated feed of all articles with infinite scroll.
+
+## why
+
+The longer-term idea behind BorderDollar was to process this feed through an NLP pipeline — tagging articles by risk type, scoring counterparty exposure, and feeding signals into a credit scoring model for maritime trade finance. MediaDollar was the data layer: get the collection pipeline running reliably before building the intelligence on top.
+
+## stack
+
+Python, feedparser, PostgreSQL, GitHub Actions — RSS scraper and DB layer. FastAPI, Vercel — API. React, Chakra UI, Vercel — frontend.
+
+## what happened
+
+The scraper ran reliably on its 6-hour cron and the dashboard consolidated news across all six sources. BorderDollar didn't move beyond the prototype stage.

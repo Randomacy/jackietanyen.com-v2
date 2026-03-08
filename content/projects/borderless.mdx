@@ -1,0 +1,43 @@
+# Borderless
+
+October 2024. Built at ETHKL 2024 over a weekend. Won the Manta Network bounty. This became the seed idea for thirdLyr.
+
+![Borderless — Tokenizing the US$500B maritime supply chain](/assets/projects/borderless/2.jpeg)
+
+## the problem
+
+Maritime shipping payments are a mess. When a ship arrives at port, the charter prepays a port agent to cover costs — fuel, supplies, port fees. The agent then pays out to suppliers. But the whole chain runs on manual tracking, slow bank transfers, and 2–14 day settlement windows. Suppliers float cash for weeks. Agents lose visibility the moment a transfer leaves their account.
+
+The maritime services industry is worth $500B. It still runs on spreadsheets and wire transfers.
+
+## what I built
+
+Borderless replaces the payment layer with a 1:1 fiat-backed ERC20 token on Manta Network.
+
+**Smart contract** — `BorderlessToken` (BLT), an ERC20 with role-based access control. An `OPERATOR_ROLE` can mint, burn, and force-transfer on behalf of participants — covering the hub-and-spoke nature of maritime payments where the agent orchestrates all flows.
+
+**Frontend** — Next.js dashboard showing live token balances (queried from chain), a payment form, and a transaction history feed pulled from the Manta Pacific explorer API. Next.js API routes handle all Web3 calls via web3.js — no wallet required for the demo.
+
+**Flow:**
+1. HQ mints BLT to the ship charter (representing fiat deposit)
+2. Charter transfers to the port agent
+3. Agent distributes to suppliers (fuel, provisions, etc.)
+4. Suppliers burn BLT to redeem fiat
+
+![Agent dashboard — balance, pay supplier, transaction history](/assets/projects/borderless/3.png)
+
+![Admin panel — company and wallet management](/assets/projects/borderless/5.png)
+
+![BorderlessToken (BLT) live on Manta Pacific Sepolia Testnet](/assets/projects/borderless/4.png)
+
+## stack
+
+Solidity, Foundry, OpenZeppelin AccessControl — deployed to Manta Pacific Sepolia (`0x5543005f3aA8716EE90b627aa9Ae52AB4127Ab93`). Next.js 14, TypeScript, Tailwind CSS, web3.js. Deployed on Vercel.
+
+## what happened
+
+Won the Manta Network bounty prize at ETHKL 2024.
+
+More importantly, this is where the core thesis for thirdLyr came from. The pain was real — I'd been researching the space and the hackathon was a forcing function to build something concrete. Borderless was the proof of concept. thirdLyr was meant to be the company.
+
+Source on [GitHub](https://github.com/Randomacy/ETHKL-2024).

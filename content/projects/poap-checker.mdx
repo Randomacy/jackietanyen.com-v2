@@ -1,0 +1,28 @@
+# POAP Link Checker
+
+June 2023. A quick tool built after organising an event where POAPs were distributed.
+
+## the problem
+
+POAPs (Proof of Attendance Protocol) are NFT badges distributed as claim links — attendees follow a URL to mint their badge. After an event, you're left with a list of claim links and no easy way to tell which ones were actually redeemed. Manually checking each link is tedious at any scale.
+
+## what I built
+
+A Streamlit app that takes a `.txt` file of POAP claim links, hits the POAP API for each one, and tells you whether it's been claimed or not. Results are shown inline as the check runs and can be downloaded as a CSV.
+
+The flow:
+1. Upload a `.txt` file with one POAP link per line
+2. Click "Check my POAPs' validity!"
+3. Each link is resolved to its hash and queried against the POAP frontend API
+4. Status is shown live: `CLAIMED`, `NOT CLAIMED`, or `ERROR`
+5. Download the results as a CSV
+
+## stack
+
+Python, Streamlit, pandas, requests.
+
+## what happened
+
+Did the job. Built it for one event, used it, moved on.
+
+Source on [GitHub](https://github.com/Randomacy/poap-checker-app).

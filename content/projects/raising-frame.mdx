@@ -1,0 +1,28 @@
+# #Raising F(r)ame
+
+February 2025. A weekend build for founders in the trenches of fundraising.
+
+## the idea
+
+I was in the middle of raising a $10M seed round for thirdLyr when I came across a post by Oliver W. and Jonathan Liu — they'd built a LinkedIn profile frame for a campaign and the timing was perfect. I hacked together my own version over the weekend.
+
+The premise: founders signal they're raising by slapping a rainbow "#RAISING" frame on their LinkedIn profile pic. VCs scroll their feed, see it, know you're in market. Close rounds faster.
+
+## what was built
+
+A single-page Next.js app:
+
+- **Upload flow** — file input that converts an image to a data URL for preview
+- **Canvas overlay** — `html2canvas` composites the profile pic with a rainbow "#RAISING" frame overlay at 3x resolution
+- **Download** — result stored in session storage, routed to a success page with a one-click PNG download
+- **Success message** — "May you be the next unicorn 🦄"
+
+Stack: Next.js 14, TypeScript, Tailwind CSS, html2canvas. Deployed on Vercel.
+
+![The #Raising F(r)ame app](/assets/projects/raising-frame/banner.png)
+
+## what happened
+
+Posted it on LinkedIn. Got 94 likes and 19 comments — not bad for a weekend hack. A few other founders used it.
+
+It was always meant to be ephemeral. The raise moved on, the frame did its job, and the repo sits archived. Sometimes a tool only needs to live for one season.

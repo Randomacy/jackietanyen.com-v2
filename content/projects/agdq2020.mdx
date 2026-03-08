@@ -1,0 +1,70 @@
+# AGDQ 2020 Analysis
+
+January 2020. I spent all of AGDQ 2020 watching the stream and got curious enough to actually dig into the data. This was written up as a featured project for [UpLevel](https://uplevel.work), an ed-tech startup I was part of at the time.
+
+Awesome Games Done Quick is a semiannual speedrunning charity marathon — games played as fast as possible, live on Twitch, with donations rolling in from viewers. AGDQ 2020 ran January 5–12 and raised a record $3.1M for the Prevent Cancer Foundation.
+
+## approach
+
+![Project AGDQ 2020 approach diagram](/assets/projects/agdq2020/approach.png)
+
+Four steps: scrape the GDQ tracker, visualise the donation data, get runner metrics, and perform text analytics on the donation comments.
+
+## the data
+
+Two datasets from the [GDQ tracker](https://gamesdonequick.com/tracker/event/agdq2020):
+
+- **Donations** — 54,100 records with donor name, timestamp, amount, and whether a comment was included
+- **Runs** — 139 games with runner names, consoles, and segment lengths
+
+Two rounds of scraping: one for the main donation table (1,083 pages), a second to retrieve actual comment text from individual donation pages. Used ThreadPoolExecutor with 3 concurrent workers to keep it manageable. Still took two days.
+
+I matched each donation to the game being streamed at the time, which made per-game analysis possible.
+
+## what I found
+
+**Donations over time.** Linear for the first six days, then a sharp spike at the end — caused by a $356,306 bulk donation from the GDQ team itself during the Legend of Zelda: A Link to the Past Randomizer run. That was a rollup of Twitch subscriptions, bits, and sponsorships, not individual donor behaviour, so it was stripped from most subsequent analysis.
+
+**Top games by donations raised** (individual donors, bulk excluded):
+
+![Top 5 games by donations](/assets/projects/agdq2020/top-games.png)
+
+1. The Legend of Zelda: A Link to the Past Randomizer — $352,485
+2. Clone Hero (Guitar Hero) — $263,248
+3. Pokémon X/Y — $174,860
+4. Katana Zero — $131,151
+5. Blasphemous — $108,018
+
+**Run lengths.** 139 games, 180+ runners. Longest: Final Fantasy VIII on PS2 at 9h 10m. Shortest: The Adventures of Rocky and Bullwinkle on NES at 4m 48s.
+
+**Consoles.** Almost a third of games were PC, followed by SNES and NES. A few genuinely old hardware runs — TurboGrafx-16 and MegaDrive showed up too.
+
+![Consoles used in AGDQ 2020](/assets/projects/agdq2020/consoles-count.png)
+
+**Correlations.** Tested run length vs. money raised — no relationship.
+
+![Segment duration vs amount raised](/assets/projects/agdq2020/duration-vs-amount.png)
+
+Tested console platform vs. money raised — also no relationship.
+
+![Console type vs amount raised](/assets/projects/agdq2020/console-vs-amount.png)
+
+At some point you just have to accept that fundraising at GDQ is a form of art.
+
+**Donor comments.** 36,573 comments, 681,146 words, 28,115 unique. The word cloud was dominated by well-wishes, but two things stood out — a lot of honking (Untitled Goose Game had just come out), and plenty of "edf edf" from Earth Defense Force fans doing their thing.
+
+![Donor comment word cloud](/assets/projects/agdq2020/word-cloud.png)
+
+**Dedications.** I scanned comments for keywords tied to family members and relations. Most donations were dedicated to friends (472), followed by mothers (241), brothers (163), fathers (162), and grandmothers (149). A charity speedrunning marathon full of people donating in memory of someone.
+
+## stack
+
+Python, requests, BeautifulSoup, pandas, matplotlib, wordcloud. ThreadPoolExecutor for concurrent scraping.
+
+## reflection
+
+A one-day analysis that took two days to scrape. The finding that neither run length nor console correlated with donations was genuinely surprising — I'd expected longer runs or nostalgia-heavy platforms to pull more. They don't.
+
+The writeup was featured on UpLevel's blog and got some Reddit attention. A user flagged a few mistakes, which I corrected. That's the correct order of events.
+
+Source code on [GitHub](https://github.com/Randomacy/agdq2020).

@@ -1,0 +1,30 @@
+# Grab ETA Prediction
+
+2020. Built for the Microsoft Azure Virtual Hackathon, Grab Challenge — predicting ride ETA for Singapore car trips.
+
+## the challenge
+
+Given an origin, a destination, a departure time, and a day of the week: predict how long the trip will take. The judging dataset was Singapore car rides.
+
+## what I built
+
+**Feature engineering** — the raw inputs (lat/lon pairs, hour, day) aren't enough on their own. I engineered:
+
+- **Haversine distance** — great-circle distance between pickup and dropoff
+- **Traffic congestion** — a hand-crafted lookup table of congestion indices by day of week and hour, derived from Singapore traffic data
+- **Is daytime** — flag for off-peak night hours (11pm–9am)
+- **Is weekend** — flag for Saturday/Sunday
+
+**Model** — trained on the Grab dataset and deployed as an endpoint on Azure Container Instances (Azure ML).
+
+**API** — a Flask app deployed on Heroku that takes a POST request with trip parameters, assembles the feature vector, calls the Azure ML scoring endpoint, and returns the predicted ETA in seconds.
+
+## stack
+
+Python, Flask, haversine — preprocessing API, deployed on Heroku. Azure ML, Azure Container Instances — model training and serving.
+
+## what happened
+
+Submitted and participated. The congestion lookup table was the most interesting part — manually encoding Singapore's traffic patterns by hour and day rather than trying to learn it from the data directly.
+
+Source on [GitHub](https://github.com/Randomacy/MSAzureHackathon2020).
