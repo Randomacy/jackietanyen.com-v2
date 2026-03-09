@@ -26,7 +26,7 @@ export function ProjectCard({ project }: Props) {
       </p>
 
       {/* Footer row */}
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-1.5">
           {project.categories.map((cat) => (
             <span key={cat} className="text-xs text-terminal-dim border border-terminal-border rounded px-1.5 py-0.5">
@@ -34,7 +34,7 @@ export function ProjectCard({ project }: Props) {
             </span>
           ))}
         </div>
-        <div className="flex gap-1.5 shrink-0">
+        <div className="flex gap-1.5">
           <StatusBadge variant="origin" value={project.origin} />
           {project.type === 'live' && (
             <StatusBadge variant="type" value={project.type} />

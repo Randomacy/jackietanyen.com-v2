@@ -50,7 +50,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       {/* Project header */}
       <TerminalWindow title={`${project.slug} — info`}>
         <div className="space-y-4">
-          <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-wrap items-start justify-between gap-4">
             <h1 className="text-xl text-terminal-text font-medium">{project.title}</h1>
             <StatusBadge variant="status" value={project.status} />
           </div>

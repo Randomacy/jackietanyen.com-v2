@@ -18,7 +18,7 @@ export function TerminalWindow({ title = 'terminal', children, className = '' }:
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {children}
       </div>
     </div>

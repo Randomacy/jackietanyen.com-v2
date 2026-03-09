@@ -19,7 +19,19 @@
     font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
     background-color: #0d0d0d;
     color: #d4d4d4;
-    font-size: 150%;
+    font-size: 100%;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-size: 125%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 150%;
+    }
   }
 
   body {
