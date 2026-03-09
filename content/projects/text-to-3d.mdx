@@ -1,0 +1,42 @@
+# Text-to-3D
+
+November 2024. Built at the BeWater Drinkathon (T3V & BitcoinOS track) in Bangkok over a weekend. Won.
+
+## the problem
+
+Creating 3D assets is slow and gatekept by skill. If you're a game developer, a VR designer, or just someone who needs a 3D model of a specific object, your options are: learn Blender properly (weeks), hire someone (expensive), or download something generic from a library (usually not quite right).
+
+The whole pipeline — concept to model — is both time-consuming and skill-dependent. That's the bottleneck.
+
+## what we built
+
+A text-to-3D generator that takes a natural language prompt and spits out a usable 3D model. No 3D modelling experience required.
+
+**Stack:**
+- **OpenAI Shap-E** — the AI backbone. Shap-E is a conditional generative model trained to produce 3D assets from text. It generates both a mesh and a NeRF representation, so you get something you can actually use.
+- **Gradio** — deployed the model as a web app instantly. You type a prompt, hit submit, get a model back. Accessible via browser, no install needed.
+- **Shap-E Diffuser** — post-processing layer that converts the generated mesh and GIF output into a GLB file, which is the standard format for Blender, Three.js, and most 3D workflows.
+
+The demo ran live at `ia264745.gradio.live` — a simple interface: enter a prompt, clear, submit. The output was a viewable 3D model ready to pull into Blender.
+
+## demo
+
+<video controls width="100%" style={{borderRadius: '8px', marginTop: '1rem'}}>
+  <source src="/assets/projects/text-to-3d/demo.mp4" type="video/mp4" />
+</video>
+
+## why it mattered
+
+The unlock here wasn't just "AI makes 3D models." It was the full pipeline to a usable file format. GLB is broadly compatible — Blender picks it up natively, it works in Three.js for web rendering, Unity and Unreal can import it. By going text → Shap-E → GLB, we closed the gap from "cool demo" to "actually useful for a 3D workflow."
+
+At scale, this changes who can generate 3D content. You don't need a modeller — you need someone who can describe what they want.
+
+## stack
+
+Python, OpenAI Shap-E, Gradio, Shap-E Diffuser (HuggingFace), GLB export
+
+## reflection
+
+Shap-E was still early — the models are recognisable but not photorealistic. That's a function of where generative 3D was in 2024, not a flaw in the approach. The pipeline we built is the right one; the underlying model quality will keep improving.
+
+Won the hackathon. Bangkok was a good venue for it.

@@ -1,0 +1,76 @@
+# NewCo (Proof of Humanity)
+
+Early 2025. Built with Kenneth Yap. Pitched to Menyala (now Liminal) for a US$1M raise with TRIVE Digital as co-investor. The managing partner didn't like us. Bad meeting. Both passed. We dropped the idea.
+
+![NewCo — Proof of Humanity for the GenAI Era](/assets/projects/newco/cover.png)
+
+## the problem
+
+Generative AI has broken the internet's ability to tell humans from bots.
+
+![The scale of AI-driven fraud](/assets/projects/newco/problem.png)
+
+The numbers: $12B lost to fraud in 2023, heading to $40B by 2027. A 704% increase in deepfake-based identity bypass cases. And in 2024, GenAI achieved a 100% CAPTCHA solve rate — meaning the last line of defence for most of the internet is now completely broken.
+
+The existing solutions all fail in the same way. Web2 identity providers (Okta, Microsoft Entra, Onfido) do static one-time checks at onboarding. They can't detect bots that get through and attack later. Worldcoin requires specialist iris-scanning hardware. Ethereum's Proof of Humanity uses slow, manual community vouching. CAPTCHAs are dead.
+
+The real insight from living with this problem — we'd run a web3 bounty platform that grew 10–50% MoM and fought Sybil attacks daily — was that no one had solved the two actual failure modes:
+
+1. **Verification is static.** One-time checks are insufficient. Humanity needs to be proven continuously.
+2. **Verification is extractive.** Users are treated as compliance objects with no upside for proving themselves human. Of course adoption lags.
+
+## what we built
+
+NewCo was a multimodal Proof of Humanity system built on three pillars:
+
+![The three pillars: ZKP, biometrics, network analysis](/assets/projects/newco/approach.png)
+
+**Pillar 1 — Zero-knowledge proofs.** State-of-the-art ZKP systems (Semaphore) generate proofs in 1.5ms. Users prove their humanity without exposing biometric data or PII. NIST standardising ZKP in 2025 was a regulatory tailwind.
+
+**Pillar 2 — Device-native biometrics + behavioural meta-scoring.** Instead of Worldcoin's hardware bottleneck, we used Face ID and Android BiometricPrompt — biometrics already in users' pockets. On top of that, a continuous behavioural scoring engine analysed keystroke patterns, mouse gestures, and engagement dynamics to catch bots that passed onboarding and attacked later.
+
+**Pillar 3 — Network-based fraud detection.** On-chain transaction analysis via Neo4j to detect and blacklist wallets involved in Sybil attacks. Once flagged, warnings propagated across the NewCo network.
+
+![User registration and verification flow](/assets/projects/newco/user-flow.png)
+
+The user flow: download app → register biometrics → ZKP attestation stored on-chain → any integrated website prompts for PoH → approve with biometrics → access granted. No hardware, no document uploads, no friction tax.
+
+![Full system architecture](/assets/projects/newco/architecture.png)
+
+**The key differentiator** was the incentive flip. Instead of treating verification as a compliance burden, we modelled it like ShopBack — verify with PoH and unlock cashback, discounts, and perks. In web3, verified humans get priority for airdrop and bounty rewards. Platforms fund the rewards because PoH cuts their fraud losses. Users verify because there's immediate economic upside.
+
+## competitive position
+
+![Competitive matrix](/assets/projects/newco/competitive.png)
+
+We were the only solution that combined privacy-preservation, continuous detection, anti-AI resistance, and scalability. Every competitor had gaps — usually on the continuous detection or AI resistance dimensions. Worldcoin was closest in ambition but hardware-bottlenecked and privacy-compromised.
+
+## traction
+
+![StackUp verbal LOI in under a day](/assets/projects/newco/traction.png)
+
+Three verbal LOIs from web3 projects — StackUp (200k users, learn-and-earn), Ethlas Ventures (gaming ecosystem), and one airdrop platform. The StackUp LOI came in under a day of conversation. Market pull was real.
+
+## the raise attempt
+
+We went to Menyala (now Liminal) for a US$1M founding round, with TRIVE Digital lined up as co-investor if Menyala led. The programme had a structured process — market research, problem discovery, user insights, concept testing, solution design — over 24 weeks.
+
+It didn't get that far. The managing partner didn't like us. Serious: it was a bad meeting. Both Menyala and TRIVE passed.
+
+## what happened
+
+We dropped it.
+
+The frustrating part wasn't the pass — rejection is part of the game. It was the time and momentum lost on a VC fit that was wrong from the start. The problem is real. The traction signals were strong. The deck was solid. But the energy in the room was wrong and we couldn't recover it.
+
+Looking back: Menyala/Liminal was the wrong investor for this at this stage. We should have moved faster to alternative routes rather than committing momentum to a single GP relationship.
+
+## the idea itself
+
+The thesis was right. AI-driven fraud is only getting worse. Continuous, user-incentivised, privacy-preserving PoH is the correct answer to the problem. The market timing — regulatory tailwinds from EU AI Act, CAPTCHA obsolescence, $40B fraud trajectory — was as good as it gets.
+
+The space has moved since. That doesn't change the analysis. We were solving the right thing. We just stopped.
+
+## stack
+
+Next.js, React Native, Node.js, Rust microservices, Semaphore (ZKP), Neo4j (fraud graph), FastAPI (behavioural scoring), AWS, Supabase. Kenneth Yap as COO.
