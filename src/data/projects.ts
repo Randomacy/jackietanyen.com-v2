@@ -2,6 +2,16 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    slug: 'ebi',
+    title: 'EBI',
+    shortDescription: 'Mental health journaling app — voice, chatbot, or text — with AI-generated summaries and QR-code sharing for therapists. Won the Build for Good hackathon 2024. Now a live startup at ebi.sg.',
+    type: 'writeup-only',
+    status: 'live',
+    origin: 'startup',
+    categories: ['mental health', 'ai', 'healthtech', 'singapore', 'next.js'],
+    builtAt: '2024',
+  },
+  {
     slug: 'quail',
     title: 'QUAIL',
     shortDescription: 'Hybrid quantum-classical model to predict drug-induced autoimmunity, with a novel interpretability method for quantum circuits. Built for the FLIQ Virtual Hackathon.',
