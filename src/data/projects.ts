@@ -302,6 +302,16 @@ export const projects: Project[] = [
     builtAt: '2019',
   },
   {
+    slug: 'neste-hackathon',
+    title: 'Neste Hackathon',
+    shortDescription: 'Private blockchain + RFID/GPS traceability for Neste\'s first-mile raw material suppliers — palm oil, fish fat, used cooking oil. Built with Roy Lai. No prize. Roy went on to found InfoCorp Technologies on this idea, raising US$14.3M during the ICO era. I served as Head of BD for a year.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['web3', 'supply chain', 'sustainability', 'agritech'],
+    builtAt: '2017',
+  },
+  {
     slug: 'farmstoprofits',
     title: 'FarmsToProfits',
     shortDescription: 'Platform to streamline RSPO certification for Indonesian smallholder palm oil farmers — visual checklists, training coordination, and scheduling in Bahasa Indonesia. Built at the Grow Asia Hackathon 2018. No prize.',
