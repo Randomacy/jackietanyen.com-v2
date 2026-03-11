@@ -1,30 +1,70 @@
 # Grab ETA Prediction
 
-2020. Built for the Microsoft Azure Virtual Hackathon, Grab Challenge — predicting ride ETA for Singapore car trips.
+2020. Built for the Microsoft Azure Virtual Hackathon, Grab Challenge — predicting ride ETA for Singapore car trips. Team Teh Cino, Phase II.
 
 ## the challenge
 
-Given an origin, a destination, a departure time, and a day of the week: predict how long the trip will take. The judging dataset was Singapore car rides.
+Given an origin, a destination, a departure time, and a day of the week: predict how long the trip will take. The judging dataset was real Singapore Grab car rides from the Grab-Posisi GPS trajectory dataset.
 
-## what I built
+## the team
 
-**Feature engineering** — the raw inputs (lat/lon pairs, hour, day) aren't enough on their own. I engineered:
+Team Teh Cino: Nicholas Tan (SUTD, Engineering Systems and Design — data science and analytics), Filbert Cia (SUTD, Information Systems Technology and Design — backend development and algorithm design), and me (NTU postgrad, end-to-end data science project implementation).
 
-- **Haversine distance** — great-circle distance between pickup and dropoff
-- **Traffic congestion** — a hand-crafted lookup table of congestion indices by day of week and hour, derived from Singapore traffic data
-- **Is daytime** — flag for off-peak night hours (11pm–9am)
-- **Is weekend** — flag for Saturday/Sunday
+## feature engineering
 
-**Model** — trained on the Grab dataset and deployed as an endpoint on Azure Container Instances (Azure ML).
+The raw inputs — lat/lon pairs, hour, day — aren't enough on their own. We engineered five features:
 
-**API** — a Flask app deployed on Heroku that takes a POST request with trip parameters, assembles the feature vector, calls the Azure ML scoring endpoint, and returns the predicted ETA in seconds.
+**Euclidean distance (`eud_dist`)** — unitless straight-line distance between origin and destination coordinates.
 
-## stack
+**Haversine distance (`haversine`)** — great-circle distance in km using the Python haversine module. More geographically accurate than Euclidean, though it turned out to matter less to the model.
 
-Python, Flask, haversine — preprocessing API, deployed on Heroku. Azure ML, Azure Container Instances — model training and serving.
+**Traffic congestion (`congestion`)** — a lookup table of congestion indices keyed by `day_of_week` and `hour_of_day`, derived from TomTom's Historical Traffic Data 2019 for Singapore. Hand-crafted rather than learned — the idea being that Singapore's traffic patterns are stable enough to encode directly.
 
-## what happened
+**`is_day`** — whether the trip started during daytime, defined using Singapore's Highway Code: 7pm–7am is legally night (drivers must use headlights). Night trips are slower.
 
-Submitted and participated. The congestion lookup table was the most interesting part — manually encoding Singapore's traffic patterns by hour and day rather than trying to learn it from the data directly.
+**`is_weekend`** — whether the trip fell on Saturday or Sunday, based on Phase I EDA showing lower traffic on weekends.
+
+## experiments
+
+We ran four experiments across Azure Pipeline ML and Azure AutoML:
+
+| Experiment | Algorithm | RMSE |
+|---|---|---|
+| Azure Pipeline ML (Linear Regression) | Linear Regression | 279.31 |
+| Azure AutoML — all features, no optimisation | StackEnsemble | 252.78 |
+| Azure AutoML — optimised, excludes lat/lon differences | StackEnsemble | 235.17 |
+| Azure AutoML — excludes lat/lon, is_day, is_weekend | VotingEnsemble | ~228.21 |
+
+The fourth experiment had the lowest raw RMSE, but we chose the third as our final model — removing `is_day` and `is_weekend` felt like overfitting since they're valid real-world features.
+
+## best model
+
+**Azure AutoML StackEnsemble — RMSE: 235.17**
+
+Registered as `AutoML369f0744146:1`, deployed as `tehcino-grab-model`.
+
+## feature importance
+
+In order of decreasing importance for the best model:
+
+1. `day_of_week`
+2. `euclidean_distance`
+3. `congestion`
+4. `haversine_distance`
+5. `start_hour`
+6. `dest_lat`
+7. `origin_lat`
+8. `origin_lon`
+9. `dest_lon`
+10. `is_day`
+11. `is_weekend`
+
+Notable: `day_of_week` dominated — each day has unique traffic characteristics. `euclidean_distance` ranked above `haversine_distance`, which was counterintuitive. The congestion score improved the model meaningfully. `is_day` and `is_weekend` ranked last but were kept as valid domain features.
+
+## architecture
+
+Azure AutoML trained and registered the model → deployed via Azure AutoML Endpoint Service → Flask REST API on Heroku preprocessed incoming requests, assembled feature vectors, called the Azure scoring endpoint, and returned ETA predictions in seconds.
+
+Live endpoint: `https://teamcinopreprocessapi.herokuapp.com/api/v1.0/eta`
 
 Source on [GitHub](https://github.com/Randomacy/MSAzureHackathon2020).

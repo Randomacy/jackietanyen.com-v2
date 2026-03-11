@@ -1,0 +1,27 @@
+# Project G v1
+
+April 2020. A machine learning-based food reformulation engine — built end-to-end in R, including the RShiny dashboard. Consulting project for an unnamed client.
+
+## the problem
+
+Food manufacturers reformulate products constantly — to cut costs, hit nutritional targets, comply with regulations, or respond to ingredient shortages. The challenge is working backwards: given a nutritional label (calories, protein, fat, carbs, sodium, etc.), can you infer the underlying ingredient quantities that produced it?
+
+This is fundamentally a constraint satisfaction problem. Nutritional labels are aggregates. Individual ingredients have known nutritional profiles. The question is: what combination of ingredient amounts, subject to realistic constraints, best explains the observed output?
+
+## what I built
+
+A constraint-based optimisation engine in R that takes a nutritional label as input and reverse engineers plausible ingredient quantities.
+
+**Constraint formulation** — each ingredient contributes known amounts of each nutrient per gram. The total across all ingredients must match (or closely approximate) the target nutritional label values. Constraints were set for physical feasibility: ingredient amounts must be non-negative, sum to a realistic total weight, and stay within category-appropriate bounds.
+
+**Optimisation** — the engine solves for ingredient quantities using constrained optimisation, minimising the residual between estimated and target nutritional values.
+
+**RShiny dashboard** — a front-end built in RShiny allowing the client to input nutritional labels, define ingredient sets, set bounds and constraints, and view the reconstructed formulations interactively.
+
+## stack
+
+R — optimisation, data processing, modelling. RShiny — interactive dashboard and front-end.
+
+## notes
+
+The client's identity is kept anonymous. A second iteration of this work was built later as Project G v2.

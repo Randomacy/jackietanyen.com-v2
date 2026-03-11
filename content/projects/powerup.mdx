@@ -1,0 +1,81 @@
+# PowerUp
+
+May 2020. Alternative credit scoring for unbanked gamers in Southeast Asia — using gaming activity, in-app purchases, and in-game behaviour as proxy for creditworthiness, plugged into the Razer Pay ecosystem. Built a working prototype. Submitted to the Razer Fintech Digital Hackathon. Didn't advance past the first round.
+
+## the problem
+
+70% of transactions in Southeast Asia are still done in cash. In a region where 27% of adults have formal bank accounts and 30% of unbanked adults globally are aged 15–24, the credit system excludes the people most likely to be gamers: young, cash-dependent, and digitally active but financially invisible.
+
+438 million individuals in Asia have no credit history. Not because they're irresponsible — but because the data that would prove their creditworthiness has never been captured. Meanwhile, 66% of SEA SMEs can't access loans or lines of credit for the same reason.
+
+Razer had just launched their bank and payment platform. They had the distribution, the user base, and the transaction data. The missing piece was a way to score the people already living inside their ecosystem.
+
+## what we built
+
+**PowerUp Credit** — an alternative credit scoring tool integrated directly into Razer App, pulling gaming activity, in-app payment behaviour, and lifestyle signals to generate a credit score for users who have no traditional financial history.
+
+Four things it unlocked:
+
+**Credit score** — a transparent score generated from alternative data, exportable as an API for other financial institutions to use as a proxy.
+
+**Gamify + Level Up** — the score improves based on in-game achievements and activity. Better behaviour unlocks higher credit limits and lower interest rates — mechanically aligned with how gamers already think.
+
+**Buy now, pay later** — credits spendable across the Razer Pay merchant ecosystem.
+
+**Loans** — short and long-term loans at rates that reflect the actual score: 0.5% to 12% APR, not the punitive flat rates the unbanked typically face.
+
+## the scoring model
+
+The PowerUp score was built from four weighted components:
+
+**Alt Credit Score (65%)** — the core signal, composed of: gaming data (35%), in-app payment behaviour (20%), utilities (15%), telco (15%), ride-hailing and online shopping (10%), word cloud analysis (5%).
+
+**Activity (15%)** — payment timeliness tracked at 30, 60, and 90 day intervals; negative balance history.
+
+**Frequency (10%)** — in-game credit top-up patterns, defaults, late payments.
+
+**Postal Code (5%)** — a proxy for alternative collateral, using location as a signal for assets owned by the user or their family.
+
+The interest rate formula was explicit and user-facing:
+
+```
+adjustedInterestRate = (1 - metascore) × (max_interest - min_interest) + min_interest
+```
+
+A metascore of 0.7 → `(1 - 0.7) × (5 - 0.5)% + 0.5% = 1.85%` on a short-term loan. The better you play, the less you pay.
+
+## architecture
+
+Built on AWS Elastic Beanstalk, pulling from game publisher APIs (Dota 2, League of Legends, and others). The bank layer ran on Mambu (banking-as-a-service). Scoring signals included: `HowOftenGamesPlayed`, `ProbabilityOfHavingJob`, `HasInternetLag?`, `DoesUserHaveAComp?`, `RiskProfileInGame`.
+
+We shipped a working prototype with a live test account for the submission.
+
+## business model
+
+Four revenue streams:
+
+- **Transaction fee** — 2.5% on Razer Pay transactions
+- **Credit Score API** — $3/report for unbanked users; $1.5/record for real-time updates to complement existing scores
+- **Interest on loans** — 0.5% to 12% APR
+- **Data subscription** — previously uncaptured datasets on the unbanked, sold to financial institutions
+
+## competitive positioning
+
+Versus Credolab and Lenddo, PowerUp was the only player with all four: real-time events, transparent metrics, actionable behaviour change, and adjustable loan interest rates. The gamification mechanic — where improving your gameplay literally improves your credit score — was unique.
+
+## market
+
+- **438M** unbanked individuals in Asia
+- **1.5B** total gamers in Asia Pacific
+- **$80B** untapped credit gap in Southeast Asia
+- SEA gaming growing at 30% Y-o-Y; average 64 minutes of daily game time in APAC
+
+## the team
+
+Built with Daryl Lim (Innovation Consultant at Padang & Co, exited AI founder), Shan Lin (Innovation Manager at Dun & Bradstreet), and Wen Kai Chia (IT Consultant at MOM, full-stack developer). I led product and business.
+
+## what happened
+
+125 teams entered. Top 20 advanced to the semis. We didn't make it.
+
+The first round was screened by a marketing representative — not a fintech person, not a credit scoring person, not someone equipped to evaluate a scoring model, a Mambu integration, or the logic of using gaming behaviour as creditworthiness proxy. The idea was rigorous. The judge wasn't.

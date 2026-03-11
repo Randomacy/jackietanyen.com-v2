@@ -1,0 +1,35 @@
+# Project G v2
+
+August 2023. The downstream application of Project G v1 — closing the loop between food reformulation and market reception. Where v1 reverse engineered ingredient quantities from nutritional labels, v2 asked the harder question: will consumers actually like the reformulated product? Built, then cancelled by the client.
+
+## context
+
+Project G v1 gave the client the capability to reformulate food products from first principles. But reformulation without validation is half the problem. Knowing *what* you've made doesn't tell you whether anyone wants it.
+
+Traditional methods to answer that question — focus groups, sensory panels, post-launch data collection — are slow, expensive, and arrive too late to de-risk a launch. The LLM wave in mid-2023 created renewed appetite for using AI to shortcut this process.
+
+## what we built
+
+A machine learning model to predict coffee favorability based on consumer demographics and coffee characteristics — a prototype for a broader consumer-reception prediction system internally codenamed Regenesys v2.
+
+**The data pipeline:**
+
+1. Make coffee to defined characteristics
+2. Have consumers taste it
+3. Have consumers rate it
+4. Collect consumer demographic data
+5. Collect coffee characteristic data
+6. Combine into a training dataset
+7. Train a model to predict favorability scores
+
+The model treats the problem as a supervised prediction task: given a consumer profile and a coffee's characteristics, what rating would that consumer give?
+
+## the idea
+
+The goal was to de-risk new product launches. Rather than running focus groups or waiting for post-launch signals, a trained model could predict reception for any new formulation before it was manufactured at scale — giving the client confidence to reformulate boldly.
+
+Combined with v1's constraint-based reformulation engine, the full system would form a closed loop: reformulate → predict reception → reformulate again → repeat until the predicted favorability hits target.
+
+## what happened
+
+Built it. The project was cancelled by the client before it could be deployed.

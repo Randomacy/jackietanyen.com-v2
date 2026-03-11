@@ -1,0 +1,59 @@
+# thirdLyr
+
+Late 2024. After BorderDollar shut down, Kenneth and I joined forces with a veteran maritime operator and his VC to build cross-border payments for the maritime industry. We were growing fast. We shut it down because the co-founder relationship broke down completely.
+
+## context
+
+BorderDollar was our first attempt at maritime fintech. When it shut down in December 2024, the insight stayed: maritime cross-border payments are genuinely broken. Telegraphic transfers take 2–7 days. Fees run up to 0.7% per transaction. When payments get stuck at an intermediary bank for an RFI, there's zero visibility — and the downstream cascading effects are catastrophic in a supply chain where a delayed port fee can hold up a ship.
+
+The maritime industry moves 80% of the world's goods. The $100 billion ship agent and port services segment — $25,000 per port call × 4,000,000 port calls globally — is the entry point with the highest payment frequency and the least tolerance for delays.
+
+We'd already validated the core mechanic at the ETHKL 2024 hackathon, where we built Borderless and won the Manta Network prize for tokenizing maritime supply chain payments.
+
+## the team and the deal
+
+After BorderDollar, Kenneth and I joined forces with a maritime operator who ran a port agent SaaS — he already had real payment volumes flowing through his network. His VC backed the venture. The proposition was clean: we bring the fintech and blockchain infrastructure, he brings the distribution and the existing customer base.
+
+The idea was to leverage those existing volumes as the wedge — rather than cold-starting from scratch, thirdLyr would flow into payment relationships that were already happening.
+
+## what we built
+
+thirdLyr was a Layer-3 blockchain built on Arbitrum Orbit, purpose-built for atomic cross-border transactions in maritime trade. The tagline: **turning cost into yield**.
+
+The core mechanic:
+
+1. Ship agents prefund their wallet with fiat
+2. thirdLyr on-ramps fiat into USDC and stakes it in staking pools
+3. Staked funds earn 3–5% p.a. yield while sitting idle
+4. When an invoice arrives, thirdLyr unstakes the relevant amount and sends it to a destination wallet
+5. The money is off-ramped via a partner exchange and fiat-transferred directly to the port service's bank account
+
+The result: instant settlement instead of 3–5 days. Negative effective transaction cost once yield is factored in. Cashback on top.
+
+The architecture had three layers:
+
+- **Layer-3 Execution Environment** — smart contract execution on Arbitrum Orbit, inheriting Ethereum's security while optimizing for maritime-specific logic
+- **Data Availability Committee (DAC)** — cryptographic data anchoring for trade documents, using an enhanced AnyTrust model with commit-reveal and staking-based slashing
+- **Decentralized Data Storage (DDS)** — RaptorQ erasure coding for fault-tolerant storage of bills of lading, compliance records, and payment receipts
+
+The **THIRD token** served as the native utility and gas token — burnable to offset transaction fees, used to reward DAC nodes and storage providers, and serving as the governance token for protocol upgrades.
+
+The roadmap had three phases: decentralized data storage → maritime oracle (aggregating AIS tracking, SGTradeX, port authority data, banking APIs for automated payments) → on-chain credit scoring and AI-driven payment agents.
+
+We published a technical whitepaper in February 2025.
+
+## traction
+
+The first two months were strong. We were moving. The existing payment network gave us real customers to talk to, real volumes to target, and a credible story for investors. We were seeking $10M in seed funding.
+
+Phase 1 projections: USD$159,000 in GTV in the first quarter alone, scaling toward USD$1.17M total volume by end of 2025.
+
+## what happened
+
+The co-founder relationship didn't hold.
+
+Kenneth and I had significant friction with the maritime operator and his VC. The working dynamic was genuinely difficult — the kind of friction that doesn't resolve, it compounds. We departed on unamicable terms.
+
+thirdLyr shut down.
+
+The thesis was right. The market was real. The payment problem in maritime is still unsolved. What didn't survive was the team.
