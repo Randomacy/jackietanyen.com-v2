@@ -1,0 +1,67 @@
+# Dilly
+
+November 2025. Agentic AI for real-time AML monitoring, onboarding, and compliance. Built at [SingHacks](https://www.singhacks.com/) — Asia's first fintech-focused agentic AI hackathon, organised by Tenity. **1st place**, Julius Bär RegTech Intelligence Challenge.
+
+![Dilly — Agentic AI for Real-Time AML Monitoring and Alerts](/assets/projects/dilly/cover.png)
+
+## the problem
+
+Client Lifecycle Management in financial institutions is breaking down under the weight of compliance. The numbers are stark:
+
+- **70%** of financial institutions worldwide lost clients in the past year due to slow onboarding — the highest rate ever recorded
+- **$72.9m** per firm is the average annual spend on AML and KYC operations (Singaporean firms: $68.2m)
+- **$4.6bn** in global regulatory penalties in 2024 alone; $1.23bn in the first half of 2025
+
+Compliance teams are buried in manual work — drafting reports, preparing onboarding packs, screening alerts, chasing policy updates across MAS, HKMA, and FINMA. The problem isn't a lack of rules. It's that the rules change constantly and humans can't keep up.
+
+## what Dilly does
+
+Dilly is an agentic AI layer for AML compliance and onboarding — built to turn compliance officers from makers into checkers.
+
+![Dilly product overview — what it does and how it runs](/assets/projects/dilly/product.png)
+
+**Turns makers into checkers** — Dilly drafts reports, prepares onboarding packs, and pre-analyses alerted transactions so compliance officers review and approve rather than build from scratch.
+
+**Live policy-to-operations bridge** — When MAS, HKMA, or FINMA updates a rule, Dilly maps the regulatory change to procedures in real time. No lag between policy and enforcement.
+
+**End-to-end support** — Onboarding & KYC, screening alerts, periodic reviews, compliance reporting. The full compliance lifecycle in one system.
+
+## how it runs
+
+Regulatory changes flow into Dilly's **Hybrid Intelligence engine** — a combination of rule-based logic and AI assessment — which generates live alerts with human-readable scoring and reporting. A **Human-in-the-Loop** layer lets compliance officers verify, approve, or override before anything is actioned.
+
+## architecture
+
+![Dilly agentic architecture diagram](/assets/projects/dilly/architecture.png)
+
+The system runs on an orchestration engine with three layers:
+
+**Rule Engine** — 40 rules across three regulatory jurisdictions:
+- 15 agents for MAS, 15 for FINMA, 15 for HKMA — each with a dedicated Policy Monitoring Agent
+
+**Report Agent** — generates audit-ready documentation with policy citations and rationale
+
+**Document + Image Agents** — 5 document agents (grammar, formatting, indentation, spelling) and 5 image agents (manipulation detection, reverse image search, GenAI image detection) for KYC document verification
+
+## the results
+
+![Measured outcomes at Julius Bär scale](/assets/projects/dilly/outcomes.png)
+
+Projected impact at Julius Bär scale:
+
+| Metric | Reduction |
+|---|---|
+| Time-to-Yes (onboarding TAT) | ▼ 40–60% |
+| Alert Review TAT | ▼ 50–70% |
+| False positives | ▼ 30–50% |
+| Audit prep effort | ▼ 80% |
+
+Annual business impact estimate:
+- **150,000 hours saved** (~75 FTEs)
+- **$12–16M OPEX reduction**
+- Capacity buffer for regional surges without extra hiring
+- Lower downside risk via traceable decisions and faster policy adoption
+
+## the team
+
+Built with Klaus Zhou (back-end), Richard Xiong (front-end), and Anna Shcherbatiuk (domain expert). I ran product.

@@ -142,6 +142,16 @@ export const projects: Project[] = [
     builtAt: '2023',
   },
   {
+    slug: 'dilly',
+    title: 'Dilly',
+    shortDescription: 'Agentic AI for real-time AML monitoring, onboarding, and compliance — 40 rules across MAS, HKMA, and FINMA with human-in-the-loop processing. 1st place at SingHacks (Julius Bär RegTech track), November 2025.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['ai', 'fintech', 'regtech', 'aml', 'compliance', 'agentic ai', 'singapore'],
+    builtAt: '2025',
+  },
+  {
     slug: 'borderdollar',
     title: 'BorderDollar',
     shortDescription: 'Cross-border invoice financing for maritime SMEs — raised US$125k from Antler and US$133k from the Stellar Community Fund for stablecoin-based invoice crowdfunding. Built during Antler SG15. Shut down Dec 2024 after not hitting PMF.',
