@@ -102,6 +102,16 @@ export const projects: Project[] = [
     builtAt: '2025',
   },
   {
+    slug: 'brik',
+    title: 'Brik',
+    shortDescription: 'ESG reporting for Singapore SMEs in construction, logistics, and real estate — generate a tender-ready report in 30 minutes instead of hiring a consultant. 30+ interviews with ESG managers and consultants. Found no wedge against established platforms. Shut down.',
+    type: 'writeup-only',
+    status: 'shut-down',
+    origin: 'startup',
+    categories: ['esg', 'sustainability', 'sme', 'singapore', 'construction', 'logistics'],
+    builtAt: '2025',
+  },
+  {
     slug: 'text-to-3d',
     title: 'Text-to-3D',
     shortDescription: 'Generated 3D models from text prompts using OpenAI\'s Shap-E model, deployed via Gradio, with GLB export for Blender. Won the BeWater Drinkathon in Bangkok.',
@@ -200,6 +210,16 @@ export const projects: Project[] = [
     origin: 'hackathon',
     categories: ['machine learning', 'python', 'azure', 'data science', 'flask'],
     builtAt: '2020',
+  },
+  {
+    slug: 'wheelyeasy',
+    title: 'WheelyEasy',
+    shortDescription: 'Mobile app for wheelchair users to find accessible routes and venues in Singapore — community-contributed data, voucher rewards, and an accessibility insights layer for businesses. Top 7 of 53 teams. Won Best Business Model at Designathon 2017.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['mobile', 'accessibility', 'social impact', 'singapore'],
+    builtAt: '2017',
   },
   {
     slug: 'bellcurvehero',
