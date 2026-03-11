@@ -10,11 +10,11 @@ export default function HomePage() {
   const remaining = projects.length - previewProjects.length
 
   const links = [
-    { label: 'about',        href: '/about' },
-    { label: 'work/apps',    href: '/apps' },
-    { label: 'articles',     href: '/articles' },
-    { label: 'media',        href: '/media' },
-    { label: 'contact',      href: 'mailto:jackietanyen@gmail.com' },
+    { label: 'about',        href: '/about',                        wip: false },
+    { label: 'work/apps',    href: '/apps',                         wip: false },
+    { label: 'articles',     href: '/articles',                     wip: true  },
+    { label: 'media',        href: '/media',                        wip: true  },
+    { label: 'contact',      href: 'mailto:jackietanyen@gmail.com', wip: false },
   ]
 
   return (
@@ -49,15 +49,24 @@ export default function HomePage() {
             <div className="space-y-1">
               <TerminalPrompt command="ls ./links" />
               <div className="flex flex-wrap gap-x-6 gap-y-1 pl-0">
-                {links.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="text-[#6699cc] hover:text-terminal-accent transition-colors duration-150 hover:underline underline-offset-2"
-                  >
-                    {link.label}/
-                  </Link>
-                ))}
+                {links.map((link) =>
+                  link.wip ? (
+                    <span
+                      key={link.href}
+                      className="text-terminal-dim cursor-default"
+                    >
+                      {link.label}/ <span className="text-xs opacity-50">(wip)</span>
+                    </span>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="text-[#6699cc] hover:text-terminal-accent transition-colors duration-150 hover:underline underline-offset-2"
+                    >
+                      {link.label}/
+                    </Link>
+                  )
+                )}
               </div>
             </div>
 
