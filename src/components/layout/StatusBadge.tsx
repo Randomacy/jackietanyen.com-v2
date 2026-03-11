@@ -34,7 +34,7 @@ export function StatusBadge(props: Props) {
   else style = typeStyles[props.value]
 
   return (
-    <span className={`inline-block text-xs border rounded px-1.5 py-0.5 ${style}`}>
+    <span className={`inline-block text-xs border rounded px-1.5 py-0.5 whitespace-nowrap ${style}`}>
       {props.value}
     </span>
   )

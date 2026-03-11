@@ -17,7 +17,7 @@ export function ProjectCard({ project }: Props) {
         <h2 className="text-terminal-text group-hover:text-terminal-accent transition-colors duration-150 font-medium leading-tight">
           {project.title}
         </h2>
-        <StatusBadge variant="status" value={project.status} />
+        <div className="shrink-0"><StatusBadge variant="status" value={project.status} /></div>
       </div>
 
       {/* Description */}
@@ -34,7 +34,7 @@ export function ProjectCard({ project }: Props) {
             </span>
           ))}
         </div>
-        <div className="flex gap-1.5">
+        <div className="flex gap-1.5 shrink-0">
           <StatusBadge variant="origin" value={project.origin} />
           {project.type === 'live' && (
             <StatusBadge variant="type" value={project.type} />
