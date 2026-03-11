@@ -72,6 +72,16 @@ export const projects: Project[] = [
     builtAt: '2025',
   },
   {
+    slug: 'textarena-hackathon',
+    title: 'TextArena Agent Hackathon',
+    shortDescription: 'AI agents competing in text-based games — built with Poon Wei Kang using creative prompts and minimal MCPs, beating teams with far more AI experience. 2nd place out of ~20 teams at AI Tinkerers Singapore, March 2025.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['agentic ai', 'gaming', 'mcp'],
+    builtAt: '2025',
+  },
+  {
     slug: 'newco',
     title: 'NewCo (Proof of Humanity)',
     shortDescription: 'Multimodal Proof of Humanity for the GenAI era — ZKPs, device-native biometrics, and behavioral scoring to stop bots and AI fraud across web2 and web3. Sought US$1M from Menyala (now Liminal). Passed on. Dropped.',

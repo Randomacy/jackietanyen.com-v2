@@ -30,7 +30,7 @@ export default function HomePage() {
                 jackie tan yen &mdash; 4x founder, 2x exit. phd in applied ai.
               </TerminalLine>
               <TerminalLine color="dim">
-                11 ventures, 4 startups, 2 exits &middot; 15 hackathons, 8 wins
+                11 ventures, 4 startups, 2 exits &middot; 16 hackathons, 9 wins
               </TerminalLine>
             </div>
 
