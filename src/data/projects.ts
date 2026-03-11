@@ -302,6 +302,16 @@ export const projects: Project[] = [
     builtAt: '2019',
   },
   {
+    slug: 'farmstoprofits',
+    title: 'FarmsToProfits',
+    shortDescription: 'Platform to streamline RSPO certification for Indonesian smallholder palm oil farmers — visual checklists, training coordination, and scheduling in Bahasa Indonesia. Built at the Grow Asia Hackathon 2018. No prize.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['agritech', 'sustainability', 'social impact', 'marketplace'],
+    builtAt: '2018',
+  },
+  {
     slug: 'justdine',
     title: 'JustDine',
     shortDescription: 'App that let diners book, pre-order, and pay before arriving at a restaurant — cutting wait times for customers and improving staff productivity for F&B operators.',
