@@ -334,7 +334,7 @@ export const projects: Project[] = [
   {
     slug: 'temasek-therapeutics',
     title: 'Temasek Therapeutics',
-    shortDescription: 'AI-driven personalised skincare startup — snap a selfie, get a custom formulation. Two U.S. patents, A*STAR seed funding of SG$921,888, 96.66% clinical efficacy. Placed 2nd at the 1st Singapore Biotechnology YES competition.',
+    shortDescription: 'AI-driven personalised skincare startup — snap a selfie, get a custom formulation. Two U.S. patents, 96.66% clinical efficacy across 150 women. Placed 2nd at the 1st Singapore Biotechnology YES competition.',
     type: 'writeup-only',
     status: 'archived',
     origin: 'hackathon',
