@@ -38,7 +38,7 @@ export default function HomePage() {
                 i make things on the internet and spend a disproportionate amount of time thinking about what the next decade looks like.
               </TerminalLine>
               <TerminalLine color="default">
-                previously: founded four companies, sold two, worked at three others. currently: figuring out what&apos;s next.
+                previously: started 11 things, four became real companies, sold two. currently: figuring out what&apos;s next.
               </TerminalLine>
               <TerminalLine color="default">
                 i&apos;m based in singapore. i build startups, compete in hackathons, write, and occasionally speak at things.
