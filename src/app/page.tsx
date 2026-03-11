@@ -27,7 +27,7 @@ export default function HomePage() {
             <div className="space-y-1">
               <TerminalPrompt command="whoami" />
               <TerminalLine color="default">
-                jackie tan yen &mdash; 4x founder, 2x exit. phd.
+                jackie tan yen &mdash; 4x founder, 2x exit. phd in applied ai.
               </TerminalLine>
             </div>
 
@@ -35,13 +35,13 @@ export default function HomePage() {
             <div className="space-y-1">
               <TerminalPrompt command="cat about.txt" />
               <TerminalLine color="default">
-                i build internet products and imagine how the world looks like in the next decade.
+                i make things on the internet and spend a disproportionate amount of time thinking about what the next decade looks like.
               </TerminalLine>
               <TerminalLine color="default">
                 previously: founded four companies, sold two, worked at three others. currently: figuring out what&apos;s next.
               </TerminalLine>
               <TerminalLine color="default">
-                i&apos;m based in singapore. i build, hack, write, and occasionally speak at things.
+                i&apos;m based in singapore. i build startups, compete in hackathons, write, and occasionally speak at things.
               </TerminalLine>
             </div>
 
