@@ -81,7 +81,7 @@ export default function HomePage() {
                   <Link
                     key={p.slug}
                     href={`/apps/${p.slug}`}
-                    className="text-terminal-text hover:text-terminal-accent transition-colors duration-150"
+                    className="text-[#6699cc] hover:text-terminal-accent transition-colors duration-150"
                   >
                     {p.slug}/
                   </Link>
