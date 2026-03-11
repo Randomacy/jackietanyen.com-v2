@@ -146,7 +146,7 @@ export const projects: Project[] = [
     title: 'Dilly',
     shortDescription: 'Agentic AI for real-time AML monitoring, onboarding, and compliance — 40 rules across MAS, HKMA, and FINMA with human-in-the-loop processing. 1st place at SingHacks (Julius Bär RegTech track), November 2025.',
     type: 'writeup-only',
-    status: 'archived',
+    status: 'live',
     origin: 'hackathon',
     categories: ['ai', 'fintech', 'regtech', 'aml', 'compliance', 'agentic ai', 'singapore'],
     builtAt: '2025',
