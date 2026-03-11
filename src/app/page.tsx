@@ -29,18 +29,9 @@ export default function HomePage() {
               <TerminalLine color="default">
                 jackie tan yen &mdash; 4x founder, 2x exit. phd in applied ai.
               </TerminalLine>
-            </div>
-
-            {/* cat stats.txt */}
-            <div className="space-y-1">
-              <TerminalPrompt command="cat stats.txt" />
-              <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm">
-                <span><span className="text-terminal-accent">11</span> <span className="text-terminal-dim">startups</span></span>
-                <span><span className="text-terminal-accent">4</span> <span className="text-terminal-dim">real companies</span></span>
-                <span><span className="text-terminal-accent">2</span> <span className="text-terminal-dim">exits</span></span>
-                <span><span className="text-terminal-accent">13</span> <span className="text-terminal-dim">hackathons</span></span>
-                <span><span className="text-terminal-accent">8</span> <span className="text-terminal-dim">wins</span></span>
-              </div>
+              <TerminalLine color="dim">
+                11 ventures, 4 startups, 2 exits &middot; 13 hackathons, 8 wins
+              </TerminalLine>
             </div>
 
             {/* cat about.txt */}
