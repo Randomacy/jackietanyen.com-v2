@@ -27,7 +27,7 @@ export default function HomePage() {
             <div className="space-y-1">
               <TerminalPrompt command="whoami" />
               <TerminalLine color="default">
-                jackie tan yen &mdash; founder. phd in applied ai.
+                jackie tan yen &mdash; serial founder. phd in applied ai.
               </TerminalLine>
               <TerminalLine color="dim">
                 11 ventures, 4 startups, 2 exits &middot; 16 hackathons, 9 wins
