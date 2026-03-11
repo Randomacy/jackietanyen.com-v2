@@ -14,7 +14,7 @@ export default function HomePage() {
     { label: 'work/apps',    href: '/apps' },
     { label: 'articles',     href: '/articles' },
     { label: 'media',        href: '/media' },
-    { label: 'contact',      href: 'mailto:jackie@example.com' },
+    { label: 'contact',      href: 'mailto:jackietanyen@gmail.com' },
   ]
 
   return (
@@ -35,13 +35,13 @@ export default function HomePage() {
             <div className="space-y-1">
               <TerminalPrompt command="cat about.txt" />
               <TerminalLine color="default">
-                i build internet products and invest in early-stage startups in southeast asia.
+                i build internet products and imagine how the world looks like in the next decade.
               </TerminalLine>
               <TerminalLine color="default">
-                previously: founded two companies, worked at three others. currently: figuring out what&apos;s next.
+                previously: founded four companies, sold two, worked at three others. currently: figuring out what&apos;s next.
               </TerminalLine>
               <TerminalLine color="default">
-                i&apos;m based in kuala lumpur. i write, hack, and occasionally speak at things.
+                i&apos;m based in singapore. i build, hack, write, and occasionally speak at things.
               </TerminalLine>
             </div>
 

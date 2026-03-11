@@ -10,9 +10,9 @@ export const metadata = {
 
 export default function AboutPage() {
   const skills = [
-    { label: 'building', items: ['product', 'full-stack', 'ai/ml', 'mobile'] },
-    { label: 'investing', items: ['pre-seed', 'seed', 'southeast asia'] },
-    { label: 'languages', items: ['english', 'malay', 'cantonese'] },
+    { label: 'built', items: ['product', 'full-stack', 'ai/ml', 'blockchain'] },
+    { label: 'investing', items: ['pre-seed', 'art'] },
+    { label: 'languages', items: ['english', 'malay', 'mandarin', 'japanese','cantonese'] },
   ]
 
   return (
@@ -49,7 +49,7 @@ export default function AboutPage() {
                     jackie tan yen &mdash; 4x founder, 2x exit. phd. based in singapore.
                   </TerminalLine>
                   <TerminalLine color="default">
-                    i&apos;ve spent the last decade building internet products and investing in early-stage startups across southeast asia. forbes 30 under 30. gen.t lister.
+                    i&apos;ve spent the last decade building internet products across multiple verticals with varying successes. forbes 30 under 30. gen.t lister.
                   </TerminalLine>
                   <TerminalLine color="default">
                     still figuring out what&apos;s next.
