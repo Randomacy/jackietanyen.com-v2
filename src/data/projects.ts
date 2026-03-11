@@ -192,6 +192,16 @@ export const projects: Project[] = [
     builtAt: '2023',
   },
   {
+    slug: 'flaunt-space',
+    title: 'flaunt.space',
+    shortDescription: 'Connect your wallet, surface your education NFTs, get web3 job and course recommendations. Presented at Solana Hacker House Singapore during Token Week 2023. The seed idea for POAPedu.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['web3', 'edtech', 'nft', 'solana', 'singapore'],
+    builtAt: '2023',
+  },
+  {
     slug: 'poapedu',
     title: 'POAPedu',
     shortDescription: 'On-chain credential aggregator on EDU Chain — NFT-minted certs and badges with a GenAI skill tree for career planning. Placed 2nd out of 725 entries at the EDU Chain Hackathon Semester 1.',
