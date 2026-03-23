@@ -1,0 +1,40 @@
+# PolEdu
+
+March 2026. Personalized AI math tutoring platform that adapts lessons to each learner's profile. Built for [LotusHacks 2026](https://github.com/LotusHacks-PolEdu/poledu-app).
+
+## the problem
+
+One-size-fits-all tutoring doesn't work. A hands-on learner and an auditory learner sitting through the same lesson will have completely different outcomes — but most edtech products ignore this entirely. The content is identical; only the pacing changes.
+
+The result: learners disengage, gaps compound, and the platform gets blamed for the student's learning style.
+
+## what PolEdu does
+
+PolEdu profiles each learner on intake and uses that profile to shape every lesson it generates — not just the difficulty, but the *format* of explanation.
+
+**Adaptive content by learning style:**
+- Hands-on learners get interactive sliders, parametric graph explorers, and step-by-step problem reveals
+- Auditory/reading learners get analogy cards and text-to-speech narration
+- Quizzes adapt to the same profile — 10 questions across multiple-choice, numeric, and true/false formats
+
+**AI-generated lessons via chat** — lessons are delivered conversationally, with structured content blocks rendered inline: static graphs, interactive visualizations, KaTeX-formatted equations, and real-world analogy cards.
+
+**IELTS mock test generation** — full four-section mock tests generated on demand, with source material retrieved via Exa and stored in ChromaDB for consistent retrieval.
+
+## architecture
+
+**Frontend:** Vue 3 + TypeScript (Vite)
+
+**Backend:** FastAPI (Python)
+
+**AI layer:**
+- Google Gemini (Gemma 3 12B) for chat routing and intent classification
+- OpenAI GPT for lesson and test content generation
+- Exa API for web research on source material
+- ChromaDB for vector-based document retrieval
+
+Lesson content blocks include: text, static graphs, interactive graph explorers, parametric graphs with sliders, step-by-step reveals, analogy cards, and KaTeX-rendered math throughout.
+
+## demo personas
+
+Two demo profiles ship with the app — Alex (hands-on learner) and Jamie (auditory learner) — so judges and reviewers can immediately see how the same topic renders differently depending on the learner type.

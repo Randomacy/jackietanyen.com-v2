@@ -2,6 +2,16 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    slug: 'poledu',
+    title: 'PolEdu',
+    shortDescription: 'Personalized AI math tutoring platform that generates adaptive lessons based on each learner\'s profile — hands-on learners get interactive sliders and step-by-step reveals; auditory learners get analogies and TTS narration. Built for LotusHacks 2026.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['edtech', 'ai', 'personalization', 'generative ai'],
+    builtAt: '2026',
+  },
+  {
     slug: 'dilly',
     title: 'Dilly',
     shortDescription: 'Agentic AI for real-time AML monitoring, onboarding, and compliance — 40 rules across MAS, HKMA, and FINMA with human-in-the-loop processing. 1st place at SingHacks (Julius Bär RegTech track), November 2025.',
