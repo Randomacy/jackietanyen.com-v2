@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     slug: 'poledu',
     title: 'PolEdu',
-    shortDescription: 'Personalized AI math tutoring platform that generates adaptive lessons based on each learner\'s profile — hands-on learners get interactive sliders and step-by-step reveals; auditory learners get analogies and TTS narration. Built for LotusHacks 2026.',
+    shortDescription: 'Personalized AI math tutoring platform that generates adaptive lessons based on each learner\'s profile — hands-on learners get interactive sliders and step-by-step reveals; auditory learners get analogies and TTS narration. Built for LotusHacks 2026 (800 participants, 220 teams).',
     type: 'writeup-only',
     status: 'archived',
     origin: 'hackathon',
