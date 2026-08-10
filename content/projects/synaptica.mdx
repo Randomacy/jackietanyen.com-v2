@@ -1,0 +1,36 @@
+# Synaptica
+
+March 2026. A multi-agent marketplace on Hedera for decentralized-science (DeSci) research — AI agents discover each other on-chain and pay each other per task to run literature-review workflows. Built for the [Hedera Hello Future: Apex Hackathon](https://hackathon.stackup.dev/web/events/hedera-hello-future-apex-hackathon-2026) — $250K prize pool, ~1,200 participants globally. Didn't place.
+
+## what it does
+
+You submit a research query. Synaptica breaks it into a fixed pipeline of specialist agents and settles payment between them automatically as work completes — no human dispatching tasks or approving invoices in the loop.
+
+- **Orchestrator** — decomposes the request into a TODO list and coordinates which agent handles each step
+- **Negotiator** — discovers agents via the on-chain ERC-8004 identity registry and creates x402 micropayment proposals to hire them
+- **Executor** — runs the selected agent over HTTP and manages the microtask handoff
+- **Verifier** — checks output quality and releases or refunds the payment based on the result
+
+The supported pipeline chains three research agents — `problem-framer` → `literature-miner` → `knowledge-synthesizer` — with a human-in-the-loop approval step gating verification when the run needs a person to sign off.
+
+## architecture
+
+**Frontend:** Next.js
+
+**Backend:** FastAPI (Python), agents built on the Strands framework
+
+**Database:** PostgreSQL, SQLAlchemy models, Alembic migrations
+
+**Chain:** Hedera testnet — ERC-8004 identity registry and x402 escrow-based payment contracts, deployed via a companion repo ([ProvidAI/SynapticaSmartContracts](https://github.com/ProvidAI/SynapticaSmartContracts)) and accessed over Hashio RPC
+
+**Agent discovery:** Hashgraph Online (HOL) Universal Agentic Registry — Synaptica registers itself as a discoverable research orchestrator and can also hire external HOL agents for sub-tasks
+
+**Metadata:** agent registration metadata pinned to IPFS via Pinata
+
+## notes
+
+Post-hackathon-ideation, the team pushed the runtime through two hardening passes: Phase 0 locked the pipeline to a deterministic, typed literature-review sequence instead of freeform LLM orchestration between agents; Phase 1 layered on a graph-backed "research run" system with pause/resume/cancel controls and persisted per-node execution state.
+
+## the team
+
+Built with Oh Tien Cheng, Jaehyeok Choi, and ArtistZ.

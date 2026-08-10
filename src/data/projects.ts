@@ -22,6 +22,16 @@ export const projects: Project[] = [
     builtAt: '2026',
   },
   {
+    slug: 'synaptica',
+    title: 'Synaptica',
+    shortDescription: 'Multi-agent marketplace on Hedera for decentralized-science research — agents discover each other via an on-chain ERC-8004 identity registry and pay each other per task through x402 micropayments. Built for the Hedera Hello Future: Apex Hackathon; didn\'t place.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['web3', 'agentic ai', 'decentralized science', 'marketplace'],
+    builtAt: '2026',
+  },
+  {
     slug: 'dilly',
     title: 'Dilly',
     shortDescription: 'Agentic AI for real-time AML monitoring, onboarding, and compliance — 40 rules across MAS, HKMA, and FINMA with human-in-the-loop processing. 1st place at SingHacks (Julius Bär RegTech track), November 2025.',
