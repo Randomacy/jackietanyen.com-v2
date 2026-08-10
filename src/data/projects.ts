@@ -2,6 +2,16 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    slug: 'pastepin',
+    title: 'PastePin',
+    shortDescription: 'Pastebin-style app backed by Sia decentralised storage — paste text, get a shareable link, content encrypted client-side and pinned to the Sia network. Built for a Sia grant application; not funded.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'prototype',
+    categories: ['web3', 'decentralized storage', 'developer tools'],
+    builtAt: '2026',
+  },
+  {
     slug: 'poledu',
     title: 'PolEdu',
     shortDescription: 'Personalized AI math tutoring platform that generates adaptive lessons based on each learner\'s profile — hands-on learners get interactive sliders and step-by-step reveals; auditory learners get analogies and TTS narration. Built for LotusHacks 2026 (800 participants, 220 teams).',

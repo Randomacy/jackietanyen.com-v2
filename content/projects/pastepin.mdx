@@ -1,0 +1,32 @@
+# PastePin
+
+June 2026. A Pastebin-style app backed by [Sia](https://sia.tech) decentralised storage. Built as a demo for a Sia grant application — [not funded](https://github.com/Randomacy/Pastepin).
+
+## what it does
+
+Paste text, get a shareable link. Content is encrypted client-side and stored on the Sia network instead of a centralized database.
+
+- **Paste** text on the homepage — it's uploaded to Sia and pinned
+- **Retrieve** via a `/paste/[id]` URL — anyone with the link can read it
+- **Sign in** with Supabase auth to see paste history and delete your own pastes
+- Anonymous pastes are supported too
+
+## architecture
+
+**Framework:** Next.js
+
+**Storage:** Sia network — paste content lives there, encrypted, addressed by object ID
+
+**Database:** Supabase (Postgres) — stores only metadata (title, owner, Sia object ID, size, timestamp), never the paste content itself
+
+**Auth:** Supabase email/password
+
+The Sia App Key never reaches the browser — it's server-only, used exclusively inside Next.js API routes. The client only ever sees paste UUIDs from Supabase.
+
+## notes
+
+Every paste occupies a full Sia slab (~40 MB minimum) regardless of text length — a known limitation of the demo. Production use would batch small pastes with `uploadPacked()` instead of writing one slab per paste.
+
+## the grant
+
+Applied to a Sia storage grant to fund further development. Wasn't successful — the slab-per-paste inefficiency was likely part of it; a grant-worthy version would need real batching before it's viable at any scale.
