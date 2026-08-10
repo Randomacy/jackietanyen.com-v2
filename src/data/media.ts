@@ -2,6 +2,30 @@ import type { MediaFeature } from '@/types/content'
 
 export const mediaFeatures: MediaFeature[] = [
   {
+    title: 'Havona Technology Triumphs at GTR Ventures Tradetech Showcase',
+    publication: 'Global Trade Review (GTR)',
+    date: '2025-01-17',
+    description: "BorderDollar pitched at the GTR Ventures Tradetech Showcase — Jackie outlined the vision to unlock working capital for SMEs and narrow the $2.5tn global trade finance gap.",
+    topics: ['borderdollar', 'trade finance', 'fintech'],
+    url: 'https://www.gtreview.com/magazine/the-commodities-issue-2025/havona-technology-triumphs-at-gtr-ventures-tradetech-showcase/',
+  },
+  {
+    title: 'Moderator, "Networked Intelligence: The Rise of Decentralized AI"',
+    publication: 'Taipei Blockchain Week — ONBOARD Conference',
+    date: '2024-12-13',
+    description: 'Moderated a panel with Pundi AI, Twin3.ai, and FLock.io on decentralized AI, as thirdlyr co-founder and CEO.',
+    topics: ['thirdlyr', 'web3', 'ai', 'speaking'],
+    url: 'https://www.taipeiblockchainweek.com/onboard-conference-day-2',
+  },
+  {
+    title: 'Tech Startup Networking Night with LinkedIn Local™ — ft. Antler Founder Jackie Tan',
+    publication: 'SGInnovate',
+    date: '2024-07-31',
+    description: 'Featured guest sharing fintech startup insights at a LinkedIn Local Singapore networking night.',
+    topics: ['antler', 'fintech', 'speaking'],
+    url: 'https://www.sginnovate.com/event/tech-startup-networking-night-linkedin-localtm-singapore-ft-antler-founder-jackie-tan',
+  },
+  {
     title: '"I Also Can" — User Testimonial',
     publication: 'moomoo',
     date: '2024-06-07',
@@ -16,6 +40,14 @@ export const mediaFeatures: MediaFeature[] = [
     description: "Named one of Singapore's 40 honourees on Tatler's Gen.T List 2023, profiled as BorderDollar co-founder and CEO.",
     topics: ['gen.t', 'borderdollar', 'web3'],
     url: 'https://www.tatlerasia.com/people/jackie-tan',
+  },
+  {
+    title: 'DollarsAndSense Acquires fundMyLife To Provide Better Personal Finance Advice To S\'poreans',
+    publication: 'Vulcan Post',
+    date: '2019-02-18',
+    description: "fundMyLife's acquisition by DollarsAndSense, with comment from co-founder Jackie Tan on combining DollarsAndSense's content and reach with fundMyLife's matching platform.",
+    topics: ['fundmylife', 'fintech', 'exit'],
+    url: 'https://vulcanpost.com/656871/dollarsandsense-acquires-fundmylife-singapore/',
   },
   {
     title: 'Meet the Team: Jackie Tan',
