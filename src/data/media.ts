@@ -42,6 +42,14 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.tatlerasia.com/people/jackie-tan',
   },
   {
+    title: 'TEDxNewton: "If You Understand Memes, You Understand Web3"',
+    publication: 'TEDx',
+    date: '2022-03-28',
+    description: 'Three reasons memes matter in Web3, given as Head of Tribe Academy.',
+    topics: ['tedx', 'web3', 'tribe'],
+    url: 'https://www.ted.com/talks/dr_jackie_tan_if_you_understand_memes_you_understand_web3',
+  },
+  {
     title: 'Ice Breakers with Jackie Tan',
     publication: 'BackScoop',
     date: '2022-03-16',
@@ -80,6 +88,14 @@ export const mediaFeatures: MediaFeature[] = [
     description: 'Team spotlight as Chief Academic Officer at UpCode Academy, covering background and role.',
     topics: ['upcode academy', 'edtech'],
     url: 'https://medium.com/upcode-academy/meet-the-team-jackie-tan-563407b1050e',
+  },
+  {
+    title: 'The Journey of Bootstrapping a Startup in a Heavily Regulated Industry in Singapore',
+    publication: 'BEAMSTART',
+    date: '2018-01-23',
+    description: "On building fundMyLife from a hackathon financial calculator into a Q&A platform for financial planning, and bootstrapping through Singapore's regulatory constraints.",
+    topics: ['fundmylife', 'fintech', 'bootstrapping'],
+    url: 'https://beamstart.com/content/8058/The_journey_of_bootstrapping_a_startup_in_a_heavily_regulated_industry_in_Singapore',
   },
   {
     title: "Meet The 24 Inspiring Individuals In Singapore On Forbes' 30 Under 30 List 2018",
