@@ -16,9 +16,7 @@ function formatDate(iso: string): string {
 export function MediaRow({ feature }: Props) {
   return (
     <Link
-      href={feature.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={`/media/${feature.slug}`}
       className="block group py-4 border-b border-terminal-border hover:border-terminal-accent/30 transition-colors duration-150"
     >
       <div className="flex items-start gap-4">
@@ -27,7 +25,7 @@ export function MediaRow({ feature }: Props) {
             <span className="text-terminal-text group-hover:text-terminal-accent transition-colors duration-150 leading-snug">
               {feature.title}
             </span>
-            <span className="text-terminal-dim text-xs shrink-0">↗</span>
+            <span className="text-terminal-dim text-xs shrink-0">→</span>
           </div>
           <p className="text-terminal-dim text-sm leading-relaxed mb-2">
             {feature.description}

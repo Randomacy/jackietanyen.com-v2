@@ -2,6 +2,7 @@ import type { MediaFeature } from '@/types/content'
 
 export const mediaFeatures: MediaFeature[] = [
   {
+    slug: 'gtr-tradetech-showcase-2025',
     title: 'Havona Technology Triumphs at GTR Ventures Tradetech Showcase',
     publication: 'Global Trade Review (GTR)',
     date: '2025-01-17',
@@ -10,6 +11,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.gtreview.com/magazine/the-commodities-issue-2025/havona-technology-triumphs-at-gtr-ventures-tradetech-showcase/',
   },
   {
+    slug: 'taipei-blockchain-week-onboard-2024',
     title: 'Moderator, "Networked Intelligence: The Rise of Decentralized AI"',
     publication: 'Taipei Blockchain Week — ONBOARD Conference',
     date: '2024-12-13',
@@ -18,6 +20,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.taipeiblockchainweek.com/onboard-conference-day-2',
   },
   {
+    slug: 'sginnovate-linkedin-local-2024',
     title: 'Tech Startup Networking Night with LinkedIn Local™ — ft. Antler Founder Jackie Tan',
     publication: 'SGInnovate',
     date: '2024-07-31',
@@ -26,6 +29,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.sginnovate.com/event/tech-startup-networking-night-linkedin-localtm-singapore-ft-antler-founder-jackie-tan',
   },
   {
+    slug: 'moomoo-i-also-can',
     title: '"I Also Can" — User Testimonial',
     publication: 'moomoo',
     date: '2024-06-07',
@@ -34,6 +38,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.moomoo.com/sg/newsroom/i-also-can-user-testimonial-jackie-tan-invest-smarter',
   },
   {
+    slug: 'tatler-gent-2023',
     title: 'Gen.T Leaders of Tomorrow 2023',
     publication: 'Tatler Asia',
     date: '2023-06-01',
@@ -42,6 +47,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.tatlerasia.com/people/jackie-tan',
   },
   {
+    slug: 'tedxnewton-memes-web3',
     title: 'TEDxNewton: "If You Understand Memes, You Understand Web3"',
     publication: 'TEDx',
     date: '2022-03-28',
@@ -50,6 +56,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.ted.com/talks/dr_jackie_tan_if_you_understand_memes_you_understand_web3',
   },
   {
+    slug: 'backscoop-ice-breakers',
     title: 'Ice Breakers with Jackie Tan',
     publication: 'BackScoop',
     date: '2022-03-16',
@@ -58,6 +65,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.backscoop.com/newsletter-posts/ice-breakers-with-jackie-tan',
   },
   {
+    slug: 'adriantan-data-scientists',
     title: 'Discovering and Developing Data Scientists',
     publication: "Adrian Tan",
     date: '2020-11-23',
@@ -66,6 +74,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://adriantan.com.sg/discovering-and-developing-data-scientists/',
   },
   {
+    slug: 'tedxnus-student-entrepreneur',
     title: 'TEDxNUS: "What Does It Take to Become a Student Entrepreneur?"',
     publication: 'TEDx',
     date: '2019-10-22',
@@ -74,6 +83,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.ted.com/talks/jackie_tan_what_does_it_take_to_become_a_student_entrepreneur',
   },
   {
+    slug: 'dollarsandsense-acquires-fundmylife',
     title: 'DollarsAndSense Acquires fundMyLife To Provide Better Personal Finance Advice To S\'poreans',
     publication: 'Vulcan Post',
     date: '2019-02-18',
@@ -82,6 +92,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://vulcanpost.com/656871/dollarsandsense-acquires-fundmylife-singapore/',
   },
   {
+    slug: 'upcode-meet-the-team',
     title: 'Meet the Team: Jackie Tan',
     publication: 'UpCode Academy (Medium)',
     date: '2019-04-09',
@@ -90,6 +101,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://medium.com/upcode-academy/meet-the-team-jackie-tan-563407b1050e',
   },
   {
+    slug: 'beamstart-bootstrapping-fundmylife',
     title: 'The Journey of Bootstrapping a Startup in a Heavily Regulated Industry in Singapore',
     publication: 'BEAMSTART',
     date: '2018-01-23',
@@ -98,6 +110,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://beamstart.com/content/8058/The_journey_of_bootstrapping_a_startup_in_a_heavily_regulated_industry_in_Singapore',
   },
   {
+    slug: 'vulcanpost-forbes-30u30-2018',
     title: "Meet The 24 Inspiring Individuals In Singapore On Forbes' 30 Under 30 List 2018",
     publication: 'Vulcan Post',
     date: '2018-03-28',
@@ -106,6 +119,7 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://vulcanpost.com/636436/24-individuals-forbes-30-under-30-singapore-2018/',
   },
   {
+    slug: 'forbes-30u30-2018',
     title: '30 Under 30 Asia 2018 — Finance & Venture Capital',
     publication: 'Forbes',
     date: '2018-03-27',

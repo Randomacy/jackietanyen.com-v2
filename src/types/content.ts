@@ -12,10 +12,11 @@ export type Article = {
 }
 
 export type MediaFeature = {
+  slug: string
   title: string
   publication: string
   date: string
   description: string
   topics: string[]
-  url: string
+  url: string             // link to the original source, shown at the end of the summary page
 }
