@@ -12,8 +12,8 @@ export default function HomePage() {
   const links = [
     { label: 'about',        href: '/about',                        wip: false },
     { label: 'work/apps',    href: '/apps',                         wip: false },
-    { label: 'articles',     href: '/articles',                     wip: true  },
-    { label: 'media',        href: '/media',                        wip: true  },
+    { label: 'articles',     href: '/articles',                     wip: false },
+    { label: 'media',        href: '/media',                        wip: false },
     { label: 'contact',      href: 'mailto:jackietanyen@gmail.com', wip: false },
   ]
 
