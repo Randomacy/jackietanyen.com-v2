@@ -19,4 +19,5 @@ export type MediaFeature = {
   description: string
   topics: string[]
   url: string             // link to the original source, shown at the end of the summary page
+  thumbnail?: string      // image shown next to the row on /media (local asset path or hotlinked URL)
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { MediaFeature } from '@/types/content'
 
 type Props = {
@@ -20,6 +21,17 @@ export function MediaRow({ feature }: Props) {
       className="block group py-4 border-b border-terminal-border hover:border-terminal-accent/30 transition-colors duration-150"
     >
       <div className="flex items-start gap-4">
+        {feature.thumbnail && (
+          <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 border border-terminal-border overflow-hidden">
+            <Image
+              src={feature.thumbnail}
+              alt={feature.title}
+              width={96}
+              height={96}
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-150"
+            />
+          </div>
+        )}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-terminal-text group-hover:text-terminal-accent transition-colors duration-150 leading-snug">

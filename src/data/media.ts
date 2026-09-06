@@ -9,6 +9,7 @@ export const mediaFeatures: MediaFeature[] = [
     description: 'Panel on what it will take for robots to reach mass adoption in homes, healthcare, and everyday life, as founder of Mind Interface Company.',
     topics: ['mind interface company', 'robotics', 'speaking'],
     url: 'https://www.futuremode.xyz/',
+    thumbnail: '/assets/media/futuremode-consumer-robotics-era.jpg',
   },
   {
     slug: 'gtr-tradetech-showcase-2025',
@@ -45,6 +46,7 @@ export const mediaFeatures: MediaFeature[] = [
     description: 'Featured as co-founder and CEO of BorderDollar, on how moomoo shaped his approach to investing.',
     topics: ['borderdollar', 'investing'],
     url: 'https://www.moomoo.com/sg/newsroom/i-also-can-user-testimonial-jackie-tan-invest-smarter',
+    thumbnail: 'https://img.youtube.com/vi/Ryu0uXxNQkc/hqdefault.jpg',
   },
   {
     slug: 'tatler-gent-2023',
@@ -63,6 +65,7 @@ export const mediaFeatures: MediaFeature[] = [
     description: 'Three reasons memes matter in Web3, given as Head of Tribe Academy.',
     topics: ['tedx', 'web3', 'tribe'],
     url: 'https://www.ted.com/talks/dr_jackie_tan_if_you_understand_memes_you_understand_web3',
+    thumbnail: 'https://img.youtube.com/vi/AcnR-Jc5W68/hqdefault.jpg',
   },
   {
     slug: 'backscoop-ice-breakers',
@@ -90,6 +93,7 @@ export const mediaFeatures: MediaFeature[] = [
     description: 'Talk on balancing research and startup life as a student entrepreneur, drawn from founding fundMyLife during his PhD candidature.',
     topics: ['tedx', 'entrepreneurship', 'phd'],
     url: 'https://www.ted.com/talks/jackie_tan_what_does_it_take_to_become_a_student_entrepreneur',
+    thumbnail: 'https://img.youtube.com/vi/kz2d44aAyRA/hqdefault.jpg',
   },
   {
     slug: 'dollarsandsense-acquires-fundmylife',
