@@ -87,6 +87,20 @@ export default async function ArticlePage({ params }: Props) {
       ">
         <MDXRemote source={mdxContent} />
       </article>
+
+      {/* Original source, if this is an archived copy of a piece published elsewhere */}
+      {article.url && (
+        <div className="mt-10 pt-6 border-t border-terminal-border">
+          <a
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-terminal-dim hover:text-terminal-accent transition-colors duration-150"
+          >
+            read the original at {article.publication} ↗
+          </a>
+        </div>
+      )}
     </main>
   )
 }
