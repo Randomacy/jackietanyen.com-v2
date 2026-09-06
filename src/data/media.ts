@@ -2,6 +2,15 @@ import type { MediaFeature } from '@/types/content'
 
 export const mediaFeatures: MediaFeature[] = [
   {
+    slug: 'futuremode-consumer-robotics-era',
+    title: 'Panelist, "The Consumer Robotics Era"',
+    publication: 'FUTUREMODE 台灣未來祭 (Taipei)',
+    date: '2026-09-05',
+    description: 'Panel on what it will take for robots to reach mass adoption in homes, healthcare, and everyday life, as founder of Mind Interface Company.',
+    topics: ['mind interface company', 'robotics', 'speaking'],
+    url: 'https://www.futuremode.xyz/',
+  },
+  {
     slug: 'gtr-tradetech-showcase-2025',
     title: 'Havona Technology Triumphs at GTR Ventures Tradetech Showcase',
     publication: 'Global Trade Review (GTR)',
