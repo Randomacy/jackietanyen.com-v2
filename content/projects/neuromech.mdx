@@ -1,0 +1,81 @@
+# NeuroMech
+
+25–27 September 2026. Drive a robot with your eyes. Built by team NeuroMech at the [Singapore Defense Tech Hackathon](https://luma.com/sdth-2026), part of A5X, an NUSX event. **First Prize, 2-Day Team Category — S$8,000**, awarded by DVL, the Defence Venture Lab (an NUSX venture platform), "for outstanding operational innovation and technical excellence." The event also ran a separate 3-month track.
+
+The brain-computer interface side builds on tech I've been developing under Mind Interface Company (MIC). The hackathon was a chance to put MIC's BCI on a real robot, in a defence context, against a deadline.
+
+![Team NeuroMech with the S$8,000 first prize cheque and certificates](/assets/projects/neuromech/winners.jpg)
+
+## the idea
+
+The operator wears an EEG headset and watches a screen showing the robot's view. Four circles surround it — up, down, left, right — each flickering at its own frequency. Looking at a circle produces an **SSVEP** (steady-state visually evoked potential): a brain response over the visual cortex at that circle's frequency. The laptop decodes which circle you're looking at and drives a 4-wheel mecanum rover forward, back, or sideways.
+
+No joystick, no hands. Just where you look.
+
+```
+Cyton headset ──USB radio dongle──► laptop hub ──UDP──► rover (Raspberry Pi)
+                                        │
+                                        └──► operator display: robot view + 4 flicker circles
+```
+
+![The EEG headset and the mecanum-wheel rover](/assets/projects/neuromech/headset-and-rover.jpg)
+
+## the pitch
+
+The operational case is manned-unmanned teaming. Today, a soldier driving a ground robot has their hands and eyes on a controller — and other soldiers get tied down guarding them. Drive it by gaze instead, and:
+
+- **One team** — operator, UGV, and section move and fight together, all on the same live feed.
+- **5 → 0** — men tied down guarding the operator. The operator fights with the section.
+- **UGV first** — the robot goes through the door first. The enemy shoots the robot, not the point man.
+
+Saves manpower. Saves lives.
+
+![Pitching NeuroMech on stage, with the operator wearing the headset live beside the screen](/assets/projects/neuromech/pitch.jpg)
+
+## two ways to drive
+
+**Hold** (default) — the rover moves while you keep looking at a circle, and stops about 2 seconds after you look away.
+
+**Latch** — look at a circle to *select* it, **clench your jaw** to go, clench again to stop. The jaw clench is picked up as muscle noise (EMG) on the same headset, with a guided recorder to tune the threshold per operator. It releases on its own after 3 seconds.
+
+## what we built
+
+- **Decoding** — training-free filter-bank CCA on four electrodes (O1, O2, P7, P8) of an OpenBCI Cyton. On a clean recording it scored **94% accuracy at a 2-second window** (100% at 3 s). Plain CCA beat the trained TRCA models on every recording we took, so there's no per-user calibration step.
+- **Operator display** — a Python/psychopy window, not a browser. It holds **120 fps** on the laptop panel with exact flicker frequencies (11/14/17/20 Hz), measured from real frame times. Flicker is computed from the frame timestamp, never a frame counter, so refresh-rate jitter can't smear the signal.
+- **Laptop hub** — one Python process: EEG engine, decoder, a safety arbiter, WebSockets, and a newest-frame-wins video relay so latency can't build up.
+- **Rover link** — the hub's commands become UDP `FWD/BACK/LEFT/RIGHT/STOP` to a Raspberry Pi on the rover, which brakes itself if packets stop for 0.6 s.
+- **Virtual robot** — a CPU-rendered 3D arena with a first-person camera, plus a three.js digital twin, so the whole loop could be tested end to end before the physical rover existed.
+- **Tests** — 134 automated tests, plus end-to-end scripts that run the full loop in simulation with a fake EEG board.
+
+## safety first
+
+It's a defence hackathon, and it's a robot driven by brain signals — so the safety model was non-negotiable. The rover only moves while armed; the hub starts disarmed; any lost link (display, EEG, robot) disarms; re-arming is explicit; and every layer — hub bridge and the Pi itself — stops the robot on its own if commands go quiet.
+
+![Building and debugging the rover mid-hackathon](/assets/projects/neuromech/rover-build.jpg)
+
+## what we learned
+
+- **Hardware is where the time goes.** The rover's camera browned out every time the motors ran (shared battery), so the display holds the last frame from before the move and goes live again a second after it stops. The rover also strafed the wrong way — mirrored wheels — hence a `--swap-lr` flag.
+- **Simple decoders win on small data.** Plain CCA beat the trained models, and a 2-second window was the sweet spot: faster response than 3 s, with fewer wrong moves.
+- **Frequencies matter per person.** 11/14/17/20 Hz decoded cleanly for our operator; an alternative set (11/13/15/17.5 Hz) decoded much worse.
+- **Unplug the charger.** Mains noise swamps EEG. Demo prep meant a lot of electrode contact checks.
+
+## the team
+
+- **Jackie Tan Yen** — hackathon strategy, coordination, and the BCI
+- **Richard Xiong** — problem validation, slides, and pitching; set up the hackathon project itself, coordinating work across projects with [Codor](https://codor.dev/), Tailscale, and an agent harness. Same Richard from [Dilly](/apps/dilly) and [ebi](/apps/ebi).
+- **Iain** — problem validation, slides input, and report writing
+- **Wayne** — rover build, and making sure it actually works
+- **Mud** — rover build assistant and rover software
+
+![Team NeuroMech after the win](/assets/projects/neuromech/team.jpg)
+
+## what's next
+
+We're taking NeuroMech forward and applying to DVL, the Defence Venture Lab by NUS Enterprise (now NUSX) — the same venture platform behind the prize.
+
+## stack
+
+OpenBCI Cyton, BrainFlow, EEG-ExPy, Python (FastAPI, psychopy, numpy/scipy), three.js, Raspberry Pi with a mecanum-wheel chassis.
+
+Code: [github.com/admud/neuromech](https://github.com/admud/neuromech)
