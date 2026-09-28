@@ -1,0 +1,49 @@
+# NeuroMech
+
+September 2026. Drive a robot with your eyes. Built over a weekend for the [Singapore Defence Tech Hackathon (SDTH) 2026](https://luma.com/sdth-2026). **We won.**
+
+## the idea
+
+The operator wears an EEG headset and watches a screen showing the robot's view. Four circles surround it — up, down, left, right — each flickering at its own frequency. Looking at a circle produces an **SSVEP** (steady-state visually evoked potential): a brain response over the visual cortex at that circle's frequency. The laptop decodes which circle you're looking at and drives a 4-wheel mecanum rover forward, back, or sideways.
+
+No joystick, no hands. Just where you look.
+
+```
+Cyton headset ──USB radio dongle──► laptop hub ──UDP──► rover (Raspberry Pi)
+                                        │
+                                        └──► operator display: robot view + 4 flicker circles
+```
+
+![The NeuroMech rover](/assets/projects/neuromech/rover.jpg)
+
+## two ways to drive
+
+**Hold** (default) — the rover moves while you keep looking at a circle, and stops about 2 seconds after you look away.
+
+**Latch** — look at a circle to *select* it, **clench your jaw** to go, clench again to stop. The jaw clench is picked up as muscle noise (EMG) on the same headset, with a guided recorder to tune the threshold per operator. It releases on its own after 3 seconds.
+
+## what we built
+
+- **Decoding** — training-free filter-bank CCA on four electrodes (O1, O2, P7, P8) of an OpenBCI Cyton. On a clean recording it scored **94% accuracy at a 2-second window** (100% at 3 s). Plain CCA beat the trained TRCA models on every recording we took, so there's no per-user calibration step.
+- **Operator display** — a Python/psychopy window, not a browser. It holds **120 fps** on the laptop panel with exact flicker frequencies (11/14/17/20 Hz), measured from real frame times. Flicker is computed from the frame timestamp, never a frame counter, so refresh-rate jitter can't smear the signal.
+- **Laptop hub** — one Python process: EEG engine, decoder, a safety arbiter, WebSockets, and a newest-frame-wins video relay so latency can't build up.
+- **Rover link** — the hub's commands become UDP `FWD/BACK/LEFT/RIGHT/STOP` to a Raspberry Pi on the rover, which brakes itself if packets stop for 0.6 s.
+- **Virtual robot** — a CPU-rendered 3D arena with a first-person camera, plus a three.js digital twin, so the whole loop could be tested end to end before the physical rover existed.
+- **Tests** — 134 automated tests, plus end-to-end scripts that run the full loop in simulation with a fake EEG board.
+
+## safety first
+
+It's a defence hackathon, and it's a robot driven by brain signals — so the safety model was non-negotiable. The rover only moves while armed; the hub starts disarmed; any lost link (display, EEG, robot) disarms; re-arming is explicit; and every layer — hub bridge and the Pi itself — stops the robot on its own if commands go quiet.
+
+## what we learned
+
+- **Hardware is where the time goes.** The rover's camera browned out every time the motors ran (shared battery), so the display holds the last frame from before the move and goes live again a second after it stops. The rover also strafed the wrong way — mirrored wheels — hence a `--swap-lr` flag.
+- **Simple decoders win on small data.** Plain CCA beat the trained models, and a 2-second window was the sweet spot: faster response than 3 s, with fewer wrong moves.
+- **Frequencies matter per person.** 11/14/17/20 Hz decoded cleanly for our operator; an alternative set (11/13/15/17.5 Hz) decoded much worse.
+- **Unplug the charger.** Mains noise swamps EEG. Half of demo prep was electrode contact checks.
+
+## stack
+
+OpenBCI Cyton, BrainFlow, EEG-ExPy, Python (FastAPI, psychopy, numpy/scipy), three.js, Raspberry Pi with a mecanum-wheel chassis.
+
+Code: [github.com/admud/neuromech](https://github.com/admud/neuromech)

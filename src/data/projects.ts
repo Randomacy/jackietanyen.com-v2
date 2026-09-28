@@ -2,6 +2,16 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    slug: 'neuromech',
+    title: 'NeuroMech',
+    shortDescription: 'Drive a robot with your eyes — an OpenBCI EEG headset decodes which of four flickering targets you\'re looking at (SSVEP) and steers a mecanum-wheel rover forward, back, or sideways, with a jaw clench to latch a move. Won at the Singapore Defence Tech Hackathon 2026.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['brain-computer interface', 'robotics', 'defence tech', 'hardware'],
+    builtAt: '2026',
+  },
+  {
     slug: 'pastepin',
     title: 'PastePin',
     shortDescription: 'Pastebin-style app backed by Sia decentralised storage — paste text, get a shareable link, content encrypted client-side and pinned to the Sia network. Built for a Sia grant application; not funded.',
