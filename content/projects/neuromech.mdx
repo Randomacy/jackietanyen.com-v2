@@ -1,8 +1,10 @@
 # NeuroMech
 
-September 2026. Drive a robot with your eyes. Built over a weekend at the [Singapore Defence Tech Hackathon (SDTH) 2026](https://luma.com/sdth-2026) by team NeuroMech. **1st place in the 2-day hackathon track** (the event also ran a separate 3-month track).
+25–27 September 2026. Drive a robot with your eyes. Built by team NeuroMech at the [Singapore Defense Tech Hackathon](https://luma.com/sdth-2026), part of A5X, an NUSX event. **First Prize, 2-Day Team Category — S$8,000**, awarded by DVL, the Defence Venture Lab (an NUSX venture platform), "for outstanding operational innovation and technical excellence." The event also ran a separate 3-month track.
 
-The brain-computer interface side builds on tech I've been developing under MIC — the hackathon was a chance to put it on a real robot, in a defence context, against a deadline.
+The brain-computer interface side builds on tech I've been developing under Mind Interface Company (MIC). The hackathon was a chance to put MIC's BCI on a real robot, in a defence context, against a deadline.
+
+![Team NeuroMech with the S$8,000 first prize cheque and certificates](/assets/projects/neuromech/winners.jpg)
 
 ## the idea
 
@@ -16,7 +18,19 @@ Cyton headset ──USB radio dongle──► laptop hub ──UDP──► rove
                                         └──► operator display: robot view + 4 flicker circles
 ```
 
-![The NeuroMech rover](/assets/projects/neuromech/rover.jpg)
+![The EEG headset and the mecanum-wheel rover](/assets/projects/neuromech/headset-and-rover.jpg)
+
+## the pitch
+
+The operational case is manned-unmanned teaming. Today, a soldier driving a ground robot has their hands and eyes on a controller — and other soldiers get tied down guarding them. Drive it by gaze instead, and:
+
+- **One team** — operator, UGV, and section move and fight together, all on the same live feed.
+- **5 → 0** — men tied down guarding the operator. The operator fights with the section.
+- **UGV first** — the robot goes through the door first. The enemy shoots the robot, not the point man.
+
+Saves manpower. Saves lives.
+
+![Pitching NeuroMech on stage, with the operator wearing the headset live beside the screen](/assets/projects/neuromech/pitch.jpg)
 
 ## two ways to drive
 
@@ -37,6 +51,8 @@ Cyton headset ──USB radio dongle──► laptop hub ──UDP──► rove
 
 It's a defence hackathon, and it's a robot driven by brain signals — so the safety model was non-negotiable. The rover only moves while armed; the hub starts disarmed; any lost link (display, EEG, robot) disarms; re-arming is explicit; and every layer — hub bridge and the Pi itself — stops the robot on its own if commands go quiet.
 
+![Building and debugging the rover mid-hackathon](/assets/projects/neuromech/rover-build.jpg)
+
 ## what we learned
 
 - **Hardware is where the time goes.** The rover's camera browned out every time the motors ran (shared battery), so the display holds the last frame from before the move and goes live again a second after it stops. The rover also strafed the wrong way — mirrored wheels — hence a `--swap-lr` flag.
@@ -47,14 +63,16 @@ It's a defence hackathon, and it's a robot driven by brain signals — so the sa
 ## the team
 
 - **Jackie Tan Yen** — hackathon strategy, coordination, and the BCI
-- **Richard Xiong** — problem validation, slides, and pitching; set up the hackathon project itself, coordinating work across projects with Codor, Tailscale, and an agent harness. Same Richard from [Dilly](/apps/dilly) and [ebi](/apps/ebi).
+- **Richard Xiong** — problem validation, slides, and pitching; set up the hackathon project itself, coordinating work across projects with [Codor](https://codor.dev/), Tailscale, and an agent harness. Same Richard from [Dilly](/apps/dilly) and [ebi](/apps/ebi).
 - **Iain** — problem validation, slides input, and report writing
 - **Wayne** — rover build, and making sure it actually works
 - **Mud** — rover build assistant and rover software
 
+![Team NeuroMech after the win](/assets/projects/neuromech/team.jpg)
+
 ## what's next
 
-We're taking NeuroMech forward and applying to the Defence Venture Lab by NUS Enterprise (now NUSX).
+We're taking NeuroMech forward and applying to DVL, the Defence Venture Lab by NUS Enterprise (now NUSX) — the same venture platform behind the prize.
 
 ## stack
 
