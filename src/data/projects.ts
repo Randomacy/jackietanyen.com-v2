@@ -4,9 +4,9 @@ export const projects: Project[] = [
   {
     slug: 'neuromech',
     title: 'NeuroMech',
-    shortDescription: 'Drive a robot with your eyes — an OpenBCI EEG headset decodes which of four flickering targets you\'re looking at (SSVEP) and steers a mecanum-wheel rover forward, back, or sideways, with a jaw clench to latch a move. Won at the Singapore Defence Tech Hackathon 2026.',
+    shortDescription: 'Drive a robot with your eyes — an OpenBCI EEG headset decodes which of four flickering targets you\'re looking at (SSVEP) and steers a mecanum-wheel rover forward, back, or sideways, with a jaw clench to latch a move. 1st place in the 2-day track at the Singapore Defence Tech Hackathon 2026; now applying to the NUSX Defence Venture Lab.',
     type: 'writeup-only',
-    status: 'archived',
+    status: 'live',
     origin: 'hackathon',
     categories: ['brain-computer interface', 'robotics', 'defence tech', 'hardware'],
     builtAt: '2026',

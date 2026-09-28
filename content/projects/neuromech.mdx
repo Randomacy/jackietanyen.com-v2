@@ -1,6 +1,8 @@
 # NeuroMech
 
-September 2026. Drive a robot with your eyes. Built over a weekend for the [Singapore Defence Tech Hackathon (SDTH) 2026](https://luma.com/sdth-2026). **We won.**
+September 2026. Drive a robot with your eyes. Built over a weekend at the [Singapore Defence Tech Hackathon (SDTH) 2026](https://luma.com/sdth-2026) by team NeuroMech. **1st place in the 2-day hackathon track** (the event also ran a separate 3-month track).
+
+The brain-computer interface side builds on tech I've been developing under MIC — the hackathon was a chance to put it on a real robot, in a defence context, against a deadline.
 
 ## the idea
 
@@ -40,7 +42,19 @@ It's a defence hackathon, and it's a robot driven by brain signals — so the sa
 - **Hardware is where the time goes.** The rover's camera browned out every time the motors ran (shared battery), so the display holds the last frame from before the move and goes live again a second after it stops. The rover also strafed the wrong way — mirrored wheels — hence a `--swap-lr` flag.
 - **Simple decoders win on small data.** Plain CCA beat the trained models, and a 2-second window was the sweet spot: faster response than 3 s, with fewer wrong moves.
 - **Frequencies matter per person.** 11/14/17/20 Hz decoded cleanly for our operator; an alternative set (11/13/15/17.5 Hz) decoded much worse.
-- **Unplug the charger.** Mains noise swamps EEG. Half of demo prep was electrode contact checks.
+- **Unplug the charger.** Mains noise swamps EEG. Demo prep meant a lot of electrode contact checks.
+
+## the team
+
+- **Jackie Tan Yen** — hackathon strategy, coordination, and the BCI
+- **Richard Xiong** — problem validation, slides, and pitching; set up the hackathon project itself, coordinating work across projects with Codor, Tailscale, and an agent harness. Same Richard from [Dilly](/apps/dilly) and [ebi](/apps/ebi).
+- **Iain** — problem validation, slides input, and report writing
+- **Wayne** — rover build, and making sure it actually works
+- **Mud** — rover build assistant and rover software
+
+## what's next
+
+We're taking NeuroMech forward and applying to the Defence Venture Lab by NUS Enterprise (now NUSX).
 
 ## stack
 
