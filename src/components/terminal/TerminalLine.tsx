@@ -15,7 +15,7 @@ const colorMap: Record<Color, string> = {
   green:   'text-terminal-green',
   yellow:  'text-terminal-yellow',
   red:     'text-terminal-accent',
-  blue:    'text-[#6699cc]',
+  blue:    'text-terminal-blue',
 }
 
 export function TerminalLine({ children, color = 'default', indent = false, className = '' }: Props) {
