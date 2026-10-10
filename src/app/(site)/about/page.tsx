@@ -18,9 +18,30 @@ export const metadata = pageMetadata({
 
 export default function AboutPage() {
   const skills = [
-    { label: 'built', items: ['product', 'full-stack', 'ai/ml', 'blockchain'] },
+    { label: 'built', items: ['product', 'full-stack', 'ai/ml', 'brain-computer interfaces', 'blockchain'] },
     { label: 'investing', items: ['pre-seed', 'art'] },
     { label: 'languages', items: ['english', 'malay', 'mandarin', 'japanese', 'cantonese'] },
+  ]
+
+  // Roles and dates as told in the project write-ups on this site.
+  const experience = [
+    { years: '2026–', role: 'founder & ceo, mind interface company', href: '/apps/mind-interface-company' },
+    { years: '2025', role: 'product lead, circles' },
+    { years: '2024–25', role: 'co-founder, thirdlyr — maritime cross-border payments', href: '/apps/thirdlyr' },
+    { years: '2023–24', role: 'co-founder & ceo, borderdollar — antler sg15', href: '/apps/borderdollar' },
+    { years: '2022–23', role: 'head of tribe academy, then head of product at angelhack (tribe)', href: '/apps/developer-terminal' },
+    { years: '2019–22', role: 'co-founder, uplevel — acquired by tribe', href: '/apps/uplevel' },
+    { years: '2019', role: 'chief academic officer, upcode academy' },
+    { years: '2017–18', role: 'head of business development, infocorp technologies', href: '/apps/neste-hackathon' },
+    { years: '2016–19', role: 'co-founder, fundmylife — acquired by dollarsandsense', href: '/apps/fundmylife-startup' },
+  ]
+
+  const credentials = [
+    { text: 'phd, school of biological sciences, ntu' },
+    { text: 'b.sc. life sciences, nus — university scholars programme' },
+    { text: 'forbes 30 under 30 asia 2018 — finance & venture capital', href: '/media/forbes-30u30-2018' },
+    { text: 'tatler gen.t list 2023', href: '/media/tatler-gent-2023' },
+    { text: 'tedx speaker — tedxnus 2019, tedxnewton 2022', href: '/media' },
   ]
 
   return (
@@ -58,7 +79,9 @@ export default function AboutPage() {
                     i&apos;ve spent the last decade building internet products across multiple verticals with varying successes. forbes 30 under 30. gen.t lister.
                   </TerminalLine>
                   <TerminalLine color="default">
-                    still figuring out what&apos;s next.
+                    now: founder &amp; ceo of{' '}
+                    <Link href="/apps/mind-interface-company" className="terminal-link">mind interface company</Link>
+                    , building a non-invasive brain-computer interface that turns thoughts into text for people who can&apos;t speak or move.
                   </TerminalLine>
                 </div>
               </div>
@@ -75,6 +98,35 @@ export default function AboutPage() {
                   </div>
                 ))}
               </dl>
+            </section>
+
+            {/* experience */}
+            <section className="space-y-2">
+              <TerminalPrompt command="cat experience.log" />
+              <ol className="space-y-2 pt-1">
+                {experience.map(({ years, role, href }) => (
+                  <li key={role} className="flex flex-col sm:flex-row sm:gap-3">
+                    <span className="text-terminal-dim sm:w-24 shrink-0">{years}</span>
+                    {href ? (
+                      <Link href={href} className="terminal-link">{role}</Link>
+                    ) : (
+                      <span className="text-terminal-text">{role}</span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            {/* education + recognition */}
+            <section className="space-y-2">
+              <TerminalPrompt command="cat credentials.txt" />
+              <ul className="space-y-1 pt-1">
+                {credentials.map(({ text, href }) => (
+                  <li key={text} className="text-terminal-text">
+                    {href ? <Link href={href} className="terminal-link">{text}</Link> : text}
+                  </li>
+                ))}
+              </ul>
             </section>
 
             {/* links */}

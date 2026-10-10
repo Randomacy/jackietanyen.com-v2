@@ -53,7 +53,9 @@ export default async function HomePage() {
                 i&apos;m based in singapore. i build startups, compete in hackathons, write, and occasionally speak at things.
               </TerminalLine>
               <TerminalLine color="default">
-                <span className="text-terminal-accent">currently:</span> figuring out what&apos;s next.
+                <span className="text-terminal-accent">currently:</span> building{' '}
+                <Link href="/apps/mind-interface-company" className={linkClass}>mind interface company</Link>
+                {' '}&mdash; a brain-computer interface that gives people who can&apos;t speak or move their voice back.
               </TerminalLine>
             </section>
 
