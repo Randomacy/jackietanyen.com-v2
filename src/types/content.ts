@@ -18,5 +18,5 @@ export type MediaFeature = {
   date: string
   description: string
   topics: string[]
-  url: string             // link to the original source, shown at the end of the summary page
+  url?: string            // link to the original source, shown at the end of the summary page (omit for talks with no public link)
 }

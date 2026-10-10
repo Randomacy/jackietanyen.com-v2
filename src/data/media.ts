@@ -11,6 +11,22 @@ export const mediaFeatures: MediaFeature[] = [
     url: 'https://www.futuremode.xyz/',
   },
   {
+    slug: 'crystals-in-living-organisms',
+    title: 'Talk: "Not Gatekeeping These Hidden Gems — Crystals in Living Organisms"',
+    publication: 'Talk',
+    date: '2025-06-21',
+    description: 'A non-tech talk on how bacteria, plants, insects, and humans use crystals — magnetic GPS, gravity sensing, defence, cockroach milk, gout, and balance.',
+    topics: ['science', 'biology', 'speaking'],
+  },
+  {
+    slug: 'voice-cloning-talk-lorong-ai',
+    title: 'Talk: "Real-time Voice Cloning in the Age of GenAI"',
+    publication: 'Lorong AI — The One About AI Agents and Imposters',
+    date: '2025-05-14',
+    description: 'Talk on voice deepfakes with a live cloning demo, and why real-time speech-to-speech is the last barrier before mass AI voice fraud.',
+    topics: ['generative ai', 'deepfake', 'cybersecurity', 'speaking'],
+  },
+  {
     slug: 'gtr-tradetech-showcase-2025',
     title: 'Havona Technology Triumphs at GTR Ventures Tradetech Showcase',
     publication: 'Global Trade Review (GTR)',
@@ -27,6 +43,14 @@ export const mediaFeatures: MediaFeature[] = [
     description: 'Moderated a panel with Pundi AI, Twin3.ai, and FLock.io on decentralized AI, as thirdlyr co-founder and CEO.',
     topics: ['thirdlyr', 'web3', 'ai', 'speaking'],
     url: 'https://www.taipeiblockchainweek.com/onboard-conference-day-2',
+  },
+  {
+    slug: 'fintech-guest-lecture-2024',
+    title: 'Guest Lecture: "FinTech: Concepts, Cases and Technology"',
+    publication: 'Guest lecture',
+    date: '2024-08-02',
+    description: 'Guest speaker segment on smart contracts, NFTs as a new asset class, and a live demo on OpenSea.',
+    topics: ['fintech', 'web3', 'speaking'],
   },
   {
     slug: 'sginnovate-linkedin-local-2024',
