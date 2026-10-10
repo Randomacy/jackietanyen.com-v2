@@ -2,6 +2,16 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    slug: 'tempo',
+    title: 'Tempo',
+    shortDescription: 'A focus-aware agent: an EEG headband spots when your focus fades, and Tempo offers a coffee you approve through Reap\'s agentic checkout, within limits you set once. Built at the Reap × 65labs Agentic Buildathon, October 2026.',
+    type: 'writeup-only',
+    status: 'archived',
+    origin: 'hackathon',
+    categories: ['agentic ai', 'payments', 'brain-computer interface', 'fintech'],
+    builtAt: '2026',
+  },
+  {
     slug: 'neuromech',
     title: 'NeuroMech',
     shortDescription: 'Drive a robot with your eyes — an EEG headset reads which flickering target you\'re looking at and steers a mecanum-wheel rover. First Prize (S$8,000), 2-Day Team Category at the Singapore Defense Tech Hackathon 2026.',

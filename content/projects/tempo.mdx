@@ -1,0 +1,75 @@
+# Tempo
+
+9 October 2026. Built in seven hours at the [Reap × 65labs Agentic Buildathon](https://reap-hackathon-microsite.vercel.app/) at SQ Collective, Singapore. Entered in the **Most Worthwhile Problem** track. Judging happens after the event; results haven't been announced yet.
+
+**Tempo keeps you at your pace.** It's an agent that reads how focused you are through an EEG headband. When it sees you fading, it offers to get you a coffee, and you approve the payment within limits you set once.
+
+## the buildathon
+
+Reap provides financial infrastructure: cards, payments and stablecoins. The brief was to build a working agentic payments demo on Reap's sandbox, where an AI agent finds a product, checks out and pays with a person's permission and spending limits. Teams of 2–4, registered by 4:30 pm, submissions closed at 9 pm sharp.
+
+The rules ruled out the easy answer: projects had to use Reap's Agentic module, raw card details could never touch an AI model, and a generic search-and-buy chatbot was discouraged. Judging covered technical merit, polish, execution, wow factor and track fit.
+
+## the problem
+
+When you're deep in work, your focus fades over minutes. You usually notice only when you're already making mistakes. And the fix — stopping, picking a shop, choosing, paying, waiting — pulls you out of the work. So people push through, tired.
+
+Today the only thing that notices your fatigue is you, at the moment you're least able to.
+
+## how it works
+
+Tempo has three jobs: **sense**, **decide**, **act**.
+
+```
+Muse 2 headband ──OSC──► BCI service ──focus_dip──► companion app ──► Reap Agentic API ──► Dutch Colony
+     (EEG)               (focus score)               (nudge + order)   (quote, approve,
+                                                                         checkout, status)
+```
+
+- **Sense** — a Muse 2 streams four EEG channels (TP9, AF7, AF8, TP10) to a local Python service. It measures theta, alpha and beta power on four-second windows and turns beta / (alpha + theta) into a focus score, normalised against a 30-second baseline for the wearer.
+- **Decide** — a score below threshold for a sustained 30 seconds emits one `focus_dip` event. A blink or a head turn can't trigger a purchase. Missing packets, poor contact, motion or an unfinished baseline return `unknown`, never a dip.
+- **Act** — a companion character on screen gives a quiet nudge and proposes a coffee. Reap prices a Dutch Colony **Brew On-The-Go**, the user approves the charge on Reap's hosted page, and Tempo shows the order state.
+
+That's what made it more than a shopping chatbot: the purchase is triggered by the person's state, not a typed request.
+
+## payment authority
+
+The rule we held to: **the AI never sees card details, and limits live in code, not in a prompt.**
+
+- The card is entered once, on Reap's hosted sandbox page. Tempo never handles it.
+- The Reap API key stays in Next.js server routes — enrollment, quote, checkout and status — never in the browser.
+- Every charge is reviewed by the user on a Reap-hosted approval page.
+- The product spec set the spending rules a user would configure once: a daily budget, a per-order price cap, max orders per day, a cooldown between orders, a no-coffee-after-4pm cutoff, and a cancel window. When a rule blocks an order, Tempo says why — *"You're tired, but it's past 4pm. No coffee. Take a break instead."*
+
+## what we built
+
+- **BCI service** — Python: Muse 2 bridge over OSC, filtering, band power, per-wearer baseline, focus-dip detector with recovery re-arm, a simulator, and tests.
+- **Live visualizer** — shows signal quality, baseline calibration, frequency bands and the resulting focus estimate, so the judges could see *why* the agent acted.
+- **Companion app** — Next.js onboarding, order and pending pages, plus an Electron overlay with an animated sprite companion (idle, nudge, confirming, payment).
+- **Reap integration** — sandbox card enrollment, fixed-product quote, hosted payment approval, checkout and order status.
+
+Raw EEG never leaves the local BCI service; only aggregate focus events reach the app. The focus score is an experimental interaction heuristic, not a medical measurement.
+
+## demo
+
+<iframe
+  width="100%"
+  height="480"
+  style={{borderRadius: '8px', marginTop: '1rem', aspectRatio: '16 / 9'}}
+  src="https://www.youtube.com/embed/-4a0NPn6YgE"
+  title="Tempo demo"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen
+></iframe>
+
+## what's next
+
+- A webcam signal — blink rate and eye closure — alongside EEG, to cut false alarms.
+- More than coffee: water, a snack, lunch when you've skipped a meal, or simply a break.
+- Learning the user's patterns: when they dip, and what actually helps.
+
+## stack
+
+Muse 2, Python (numpy/scipy, OSC), Next.js, Electron, Reap Agentic Payments (sandbox).
+
+Code: [github.com/Randomacy/ReapHackathon](https://github.com/Randomacy/ReapHackathon)
