@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { mediaFeatures } from '@/data/media'
-import { getMdxContent } from '@/lib/mdx'
+import { getAllMedia, getMediaContent, getMediaFeature } from '@/lib/content'
 import { formatDate } from '@/lib/format'
 import { pageMetadata } from '@/lib/seo'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
@@ -14,12 +13,12 @@ type Props = {
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return mediaFeatures.map((m) => ({ slug: m.slug }))
+  return (await getAllMedia()).map((m) => ({ slug: m.slug }))
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
-  const feature = mediaFeatures.find((m) => m.slug === slug)
+  const feature = await getMediaFeature(slug)
   if (!feature) return {}
   return pageMetadata({
     hasOwnImage: true,
@@ -33,11 +32,10 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function MediaFeaturePage({ params }: Props) {
   const { slug } = await params
-  const feature = mediaFeatures.find((m) => m.slug === slug)
+  const feature = await getMediaFeature(slug)
   if (!feature) notFound()
 
-  const mdxContent = getMdxContent('media', slug)
-  if (!mdxContent) notFound()
+  const mdxContent = await getMediaContent(slug)
 
   return (
     <main className="px-4 py-8 md:py-12 max-w-2xl mx-auto">
@@ -64,7 +62,7 @@ export default async function MediaFeaturePage({ params }: Props) {
         </div>
       </header>
 
-      <MdxContent source={mdxContent} />
+      {mdxContent && <MdxContent source={mdxContent} />}
 
       <div className="mt-12 pt-6 border-t border-terminal-border flex flex-col gap-3 text-[13px] sm:flex-row sm:justify-between">
         <Link href="/media" className="terminal-link inline-block py-1">← all media</Link>

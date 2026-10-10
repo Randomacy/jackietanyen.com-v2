@@ -4,7 +4,7 @@ import { TerminalPrompt } from '@/components/terminal/TerminalPrompt'
 import { TerminalLine } from '@/components/terminal/TerminalLine'
 import { BlinkingCursor } from '@/components/terminal/BlinkingCursor'
 import { JsonLd } from '@/components/JsonLd'
-import { getAllProjects } from '@/lib/projects'
+import { getAllProjects } from '@/lib/content'
 import { pageMetadata, personJsonLd, websiteJsonLd } from '@/lib/seo'
 import { CONTACT_EMAIL } from '@/lib/site'
 
@@ -12,8 +12,8 @@ export const metadata = pageMetadata({ path: '/' })
 
 const linkClass = 'text-terminal-blue hover:text-terminal-accent transition-colors duration-150 hover:underline underline-offset-2'
 
-export default function HomePage() {
-  const projects = getAllProjects()
+export default async function HomePage() {
+  const projects = await getAllProjects()
   const previewProjects = projects.slice(0, 3)
   const remaining = projects.length - previewProjects.length
 

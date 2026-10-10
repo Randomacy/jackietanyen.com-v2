@@ -1,8 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
-import './globals.css'
-import { SiteHeader } from '@/components/layout/SiteHeader'
-import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/site'
 
 const mono = localFont({
@@ -38,21 +35,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Site chrome and global styles live in (site)/layout.tsx, so the content
+  // editor at /keystatic renders without them.
   return (
     <html lang="en" className={mono.variable}>
-      <body className="bg-terminal-bg text-terminal-text font-mono antialiased text-sm md:text-[15px] flex flex-col">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-terminal-surface focus:border focus:border-terminal-accent focus:px-3 focus:py-2 focus:rounded"
-        >
-          skip to content
-        </a>
-        <SiteHeader />
-        <div id="main" className="flex-1">
-          {children}
-        </div>
-        <SiteFooter />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

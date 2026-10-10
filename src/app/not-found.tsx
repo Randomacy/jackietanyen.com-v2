@@ -1,4 +1,6 @@
+import './globals.css'
 import Link from 'next/link'
+import { SiteShell } from '@/components/layout/SiteShell'
 import { TerminalWindow } from '@/components/terminal/TerminalWindow'
 import { TerminalPrompt } from '@/components/terminal/TerminalPrompt'
 import { TerminalLine } from '@/components/terminal/TerminalLine'
@@ -11,6 +13,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
+    <SiteShell>
     <main className="px-4 py-10 md:py-16">
       <div className="w-full max-w-2xl mx-auto">
         <TerminalWindow title="jackie@builder: ~">
@@ -33,5 +36,6 @@ export default function NotFound() {
         </TerminalWindow>
       </div>
     </main>
+    </SiteShell>
   )
 }

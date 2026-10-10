@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
-import { getProjectBySlug, getAllProjects } from '@/lib/projects'
+import { getAllProjects, getProject } from '@/lib/content'
+import { appComponents } from '@/apps/registry'
 import { AppShell } from '@/components/apps/AppShell'
 import { pageMetadata } from '@/lib/seo'
 
@@ -8,14 +9,14 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  return getAllProjects()
+  return (await getAllProjects())
     .filter((p) => p.type === 'live')
     .map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const project = await getProject(slug)
   if (!project) return {}
   return pageMetadata({
     title: `${project.title} (app)`,
@@ -27,10 +28,10 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function AppPage({ params }: Props) {
   const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const project = await getProject(slug)
   if (!project || project.type !== 'live') notFound()
 
-  const AppComponent = project.appComponent
+  const AppComponent = appComponents[project.slug]
 
   return (
     <AppShell projectTitle={project.title} projectSlug={project.slug}>

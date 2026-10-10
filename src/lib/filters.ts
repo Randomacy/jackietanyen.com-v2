@@ -1,4 +1,4 @@
-import type { FilterState, ProjectType, ProjectStatus, ProjectOrigin } from '@/types/project'
+import type { FilterState, Project, ProjectType, ProjectStatus, ProjectOrigin } from '@/types/project'
 
 const VALID_TYPES:    ProjectType[]   = ['live', 'writeup-only']
 const VALID_STATUSES: ProjectStatus[] = ['live', 'wip', 'archived', 'shut-down', 'acquired']
@@ -31,4 +31,26 @@ export function toggleFilter<T extends string>(current: T[], value: T): T[] {
   return current.includes(value)
     ? current.filter((v) => v !== value)
     : [...current, value]
+}
+
+export function filterProjects(all: Project[], filters: FilterState): Project[] {
+  return all.filter((p) => {
+    if (filters.types.length > 0 && !filters.types.includes(p.type)) return false
+    if (filters.statuses.length > 0 && !filters.statuses.includes(p.status)) return false
+    if (filters.origins.length > 0 && !filters.origins.includes(p.origin)) return false
+    if (filters.categories.length > 0 && !p.categories.some((c) => filters.categories.includes(c))) return false
+    return true
+  })
+}
+
+export type CategoryCount = { name: string; count: number }
+
+// Categories ordered by how many projects use them, then alphabetically.
+export function getCategoryCounts(projects: Project[]): CategoryCount[] {
+  const counts = new Map<string, number>()
+  for (const p of projects) {
+    for (const c of p.categories) counts.set(c, (counts.get(c) ?? 0) + 1)
+  }
+  return Array.from(counts, ([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
 }
