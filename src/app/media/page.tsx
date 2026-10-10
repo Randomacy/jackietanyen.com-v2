@@ -1,11 +1,14 @@
-import Link from 'next/link'
 import { mediaFeatures } from '@/data/media'
-import { TerminalPrompt } from '@/components/terminal/TerminalPrompt'
+import { pageMetadata } from '@/lib/seo'
+import { Breadcrumb } from '@/components/layout/Breadcrumb'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { MediaRow } from '@/components/media/MediaRow'
 
-export const metadata = {
-  title: 'media — jackie tan yen',
-}
+export const metadata = pageMetadata({
+  title: 'Media, Talks & Press',
+  description: 'Press features, interviews, talks, and panels featuring Jackie Tan Yen — Forbes 30 Under 30 Asia, TEDx, Tatler Gen.T, and more.',
+  path: '/media',
+})
 
 export default function MediaPage() {
   const sorted = [...mediaFeatures].sort(
@@ -13,20 +16,19 @@ export default function MediaPage() {
   )
 
   return (
-    <main className="min-h-screen px-4 py-12 max-w-3xl mx-auto">
-      <div className="mb-8 space-y-2">
-        <div className="text-sm text-terminal-dim">
-          <Link href="/" className="hover:text-terminal-text transition-colors duration-150">~/</Link>
-          <span className="text-terminal-text">media</span>
-        </div>
-        <TerminalPrompt command="grep -r 'jackie' ./press/" />
-      </div>
+    <main className="px-4 py-8 md:py-12 max-w-2xl mx-auto">
+      <Breadcrumb items={[{ name: 'Media, Talks & Press', label: 'media', path: '/media' }]} />
+      <PageHeader command="grep -r 'jackie' ./press/" title="media">
+        press features, interviews, talks, and panels — newest first.
+      </PageHeader>
 
-      <div>
-        {sorted.map((feature, i) => (
-          <MediaRow key={i} feature={feature} />
+      <ul className="border-t border-terminal-border">
+        {sorted.map((feature) => (
+          <li key={feature.slug}>
+            <MediaRow feature={feature} />
+          </li>
         ))}
-      </div>
+      </ul>
     </main>
   )
 }

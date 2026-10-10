@@ -1,34 +1,27 @@
-import { Suspense } from 'react'
-import Link from 'next/link'
 import { getAllProjects, getAllCategories } from '@/lib/projects'
-import { TerminalPrompt } from '@/components/terminal/TerminalPrompt'
+import { pageMetadata } from '@/lib/seo'
+import { Breadcrumb } from '@/components/layout/Breadcrumb'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { AppsContent } from './AppsContent'
 
-export const metadata = {
-  title: 'apps — jackie tan yen',
-}
+export const metadata = pageMetadata({
+  title: 'Projects & Apps',
+  description: 'Startups, hackathon wins, prototypes, and side projects by Jackie Tan Yen — AI, fintech, web3, brain-computer interfaces, and more.',
+  path: '/apps',
+})
 
 export default function AppsPage() {
   const projects = getAllProjects()
   const categories = getAllCategories()
 
   return (
-    <main className="min-h-screen px-4 py-12 max-w-5xl mx-auto">
-      {/* Page header */}
-      <div className="mb-8 space-y-2">
-        <div className="text-terminal-dim text-sm">
-          <Link href="/" className="hover:text-terminal-text transition-colors duration-150">~/</Link>
-          <span className="text-terminal-text">apps</span>
-        </div>
-        <TerminalPrompt command="ls -la ./apps" />
-      </div>
+    <main className="px-4 py-8 md:py-12 max-w-5xl mx-auto">
+      <Breadcrumb items={[{ name: 'Projects & Apps', label: 'apps', path: '/apps' }]} />
+      <PageHeader command="ls -la ./apps" title="work/apps">
+        startups, hackathon builds, prototypes, and side projects — {projects.length} in total.
+      </PageHeader>
 
-      {/* Filter + grid — needs Suspense for useSearchParams */}
-      <Suspense fallback={
-        <div className="text-terminal-dim text-sm py-8">loading...</div>
-      }>
-        <AppsContent projects={projects} categories={categories} />
-      </Suspense>
+      <AppsContent projects={projects} categories={categories} />
     </main>
   )
 }

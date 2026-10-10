@@ -53,6 +53,14 @@ public/
 
 **New media feature or talk:** add an entry to `src/data/media.ts` and a summary at `content/media/{slug}.mdx`. Set `url` to the original source; it's shown as a "read the original" link at the end of the summary page. Leave `url` out for talks with no public link. Tag talks and panels with the `speaking` topic. Put images in `public/assets/media/` and slides in `public/reference/`.
 
+## seo and sharing
+
+- `src/lib/site.ts` holds the site URL, name, description, nav links, and public profiles. Edit it to add a profile (e.g. LinkedIn); it feeds the footer and the structured data.
+- Each page sets its own title, description, and canonical URL via `pageMetadata()` in `src/lib/seo.ts`. Project, article, and media pages pull these from their entries in `src/data/`, so a good `shortDescription` / `description` doubles as the Google snippet.
+- `sitemap.xml` and `robots.txt` are generated from `src/app/sitemap.ts` and `src/app/robots.ts`; new content is picked up automatically.
+- Social preview cards (`opengraph-image`) are generated at build time for every project, article, and media page.
+- Images in MDX written as `![alt](/assets/...)` are resized and lazy-loaded automatically; always give them alt text. For raw `<iframe>` or `<video>` tags, add `loading="lazy"` / `preload="metadata"` yourself.
+
 ## commands
 
 | Command | Description |

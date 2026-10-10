@@ -1,12 +1,21 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import fs from 'fs'
-import path from 'path'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { articles } from '@/data/articles'
+import { getMdxContent } from '@/lib/mdx'
+import { formatDate } from '@/lib/format'
+import { articleJsonLd, pageMetadata } from '@/lib/seo'
+import { Breadcrumb } from '@/components/layout/Breadcrumb'
+import { JsonLd } from '@/components/JsonLd'
+import { MdxContent } from '@/components/mdx/MdxContent'
 
 type Props = {
   params: Promise<{ slug: string }>
+}
+
+export const dynamicParams = false
+
+function getHostedArticle(slug: string) {
+  return articles.find((a) => a.type === 'hosted' && a.slug === slug)
 }
 
 export async function generateStaticParams() {
@@ -17,90 +26,66 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
-  const article = articles.find((a) => a.slug === slug)
+  const article = getHostedArticle(slug)
   if (!article) return {}
-  return { title: `${article.title} — jackie tan yen` }
-}
-
-function getMdxContent(slug: string): string | null {
-  const filePath = path.join(process.cwd(), 'content', 'articles', `${slug}.mdx`)
-  try {
-    return fs.readFileSync(filePath, 'utf-8')
-  } catch {
-    return null
-  }
-}
-
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-MY', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return pageMetadata({
+    hasOwnImage: true,
+    title: article.title,
+    description: article.description,
+    path: `/articles/${slug}`,
+    type: 'article',
+    publishedTime: article.date,
   })
 }
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params
-  const article = articles.find((a) => a.slug === slug)
-  if (!article || article.type !== 'hosted') notFound()
+  const article = getHostedArticle(slug)
+  if (!article) notFound()
 
-  const mdxContent = getMdxContent(slug)
+  const mdxContent = getMdxContent('articles', slug)
   if (!mdxContent) notFound()
 
+  const path = `/articles/${slug}`
+
   return (
-    <main className="min-h-screen px-4 py-12 max-w-3xl mx-auto">
-      {/* Breadcrumb */}
-      <div className="mb-8 text-sm text-terminal-dim">
-        <Link href="/" className="hover:text-terminal-text transition-colors duration-150">~/</Link>
-        <Link href="/articles" className="hover:text-terminal-text transition-colors duration-150">articles/</Link>
-        <span className="text-terminal-text">{article.slug}</span>
-      </div>
+    <main className="px-4 py-8 md:py-12 max-w-2xl mx-auto">
+      <Breadcrumb
+        items={[
+          { name: 'Articles', label: 'articles/', path: '/articles' },
+          { name: article.title, label: slug, path },
+        ]}
+      />
+      <JsonLd data={articleJsonLd({ ...article, path })} />
 
       {/* Header */}
-      <div className="mb-10 space-y-3 pb-6 border-b border-terminal-border">
-        <h1 className="text-2xl text-terminal-text font-medium leading-tight">
+      <header className="mb-8 space-y-3 pb-6 border-b border-terminal-border">
+        <h1 className="text-xl md:text-2xl text-terminal-text font-medium leading-tight">
           {article.title}
         </h1>
-        <div className="flex flex-wrap items-center gap-3 text-xs text-terminal-dim">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] md:text-xs text-terminal-dim">
           {article.publication && <span>{article.publication}</span>}
-          <span>{formatDate(article.date)}</span>
+          <time dateTime={article.date}>{formatDate(article.date, 'long')}</time>
           <div className="flex flex-wrap gap-1">
             {article.topics.map((t) => (
-              <span key={t} className="border border-terminal-border rounded px-1.5 py-0.5">
-                {t}
-              </span>
+              <span key={t} className="tag">{t}</span>
             ))}
           </div>
         </div>
-        <p className="text-terminal-dim leading-relaxed">{article.description}</p>
-      </div>
+        <p className="text-terminal-dim text-[13px] md:text-sm leading-relaxed">{article.description}</p>
+      </header>
 
-      {/* MDX content */}
-      <article className="prose prose-invert prose-sm max-w-none
-        prose-headings:font-mono prose-headings:text-terminal-text
-        prose-p:text-terminal-dim prose-p:leading-relaxed
-        prose-a:text-terminal-accent prose-a:no-underline hover:prose-a:underline
-        prose-code:text-terminal-green prose-code:bg-terminal-surface prose-code:px-1 prose-code:rounded
-        prose-pre:bg-terminal-surface prose-pre:border prose-pre:border-terminal-border
-        prose-strong:text-terminal-text
-        prose-hr:border-terminal-border
-      ">
-        <MDXRemote source={mdxContent} />
-      </article>
+      <MdxContent source={mdxContent} />
 
-      {/* Original source, if this is an archived copy of a piece published elsewhere */}
-      {article.url && (
-        <div className="mt-10 pt-6 border-t border-terminal-border">
-          <a
-            href={article.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-terminal-dim hover:text-terminal-accent transition-colors duration-150"
-          >
+      <div className="mt-12 pt-6 border-t border-terminal-border flex flex-col gap-3 text-[13px] sm:flex-row sm:justify-between">
+        <Link href="/articles" className="terminal-link inline-block py-1">← all articles</Link>
+        {/* Original source, if this is an archived copy of a piece published elsewhere */}
+        {article.url && (
+          <a href={article.url} target="_blank" rel="noopener noreferrer" className="terminal-link inline-block py-1">
             read the original at {article.publication} ↗
           </a>
-        </div>
-      )}
+        )}
+      </div>
     </main>
   )
 }

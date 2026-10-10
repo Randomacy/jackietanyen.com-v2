@@ -38,7 +38,7 @@ export const projects: Project[] = [
     type: 'writeup-only',
     status: 'archived',
     origin: 'hackathon',
-    categories: ['edtech', 'ai', 'personalization', 'generative ai'],
+    categories: ['edtech', 'ai', 'personalisation', 'generative ai'],
     builtAt: '2026',
   },
   {

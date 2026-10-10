@@ -9,7 +9,7 @@ type Props = {
 
 export function AppShell({ projectTitle, projectSlug, children }: Props) {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-[calc(100dvh-3rem)]">
       {/* Header bar */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-terminal-border bg-terminal-surface shrink-0">
         <div className="flex items-center gap-3">

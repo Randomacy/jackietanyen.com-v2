@@ -1,11 +1,14 @@
-import Link from 'next/link'
 import { articles } from '@/data/articles'
-import { TerminalPrompt } from '@/components/terminal/TerminalPrompt'
+import { pageMetadata } from '@/lib/seo'
+import { Breadcrumb } from '@/components/layout/Breadcrumb'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { ArticleRow } from '@/components/articles/ArticleRow'
 
-export const metadata = {
-  title: 'articles — jackie tan yen',
-}
+export const metadata = pageMetadata({
+  title: 'Articles',
+  description: 'Writing by Jackie Tan Yen on startups, founding teams, and building tech products in Southeast Asia.',
+  path: '/articles',
+})
 
 export default function ArticlesPage() {
   const sorted = [...articles].sort(
@@ -13,20 +16,19 @@ export default function ArticlesPage() {
   )
 
   return (
-    <main className="min-h-screen px-4 py-12 max-w-3xl mx-auto">
-      <div className="mb-8 space-y-2">
-        <div className="text-sm text-terminal-dim">
-          <Link href="/" className="hover:text-terminal-text transition-colors duration-150">~/</Link>
-          <span className="text-terminal-text">articles</span>
-        </div>
-        <TerminalPrompt command="cat articles.log | sort -r" />
-      </div>
+    <main className="px-4 py-8 md:py-12 max-w-2xl mx-auto">
+      <Breadcrumb items={[{ name: 'Articles', label: 'articles', path: '/articles' }]} />
+      <PageHeader command="cat articles.log | sort -r" title="articles">
+        writing on startups, founding teams, and building in southeast asia.
+      </PageHeader>
 
-      <div>
+      <ul className="border-t border-terminal-border">
         {sorted.map((article, i) => (
-          <ArticleRow key={article.slug ?? `external-${i}`} article={article} />
+          <li key={article.slug ?? `external-${i}`}>
+            <ArticleRow article={article} />
+          </li>
         ))}
-      </div>
+      </ul>
     </main>
   )
 }

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getProjectBySlug, getAllProjects } from '@/lib/projects'
 import { AppShell } from '@/components/apps/AppShell'
+import { pageMetadata } from '@/lib/seo'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -16,7 +17,12 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const project = getProjectBySlug(slug)
   if (!project) return {}
-  return { title: `${project.title} (app) — jackie tan yen` }
+  return pageMetadata({
+    title: `${project.title} (app)`,
+    description: project.shortDescription,
+    path: `/apps/${project.slug}/app`,
+    noIndex: true,
+  })
 }
 
 export default async function AppPage({ params }: Props) {

@@ -9,12 +9,16 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug)
 }
 
-export function getAllCategories(): string[] {
-  const cats = new Set<string>()
+export type CategoryCount = { name: string; count: number }
+
+// Categories ordered by how many projects use them, then alphabetically.
+export function getAllCategories(): CategoryCount[] {
+  const counts = new Map<string, number>()
   for (const p of projects) {
-    for (const c of p.categories) cats.add(c)
+    for (const c of p.categories) counts.set(c, (counts.get(c) ?? 0) + 1)
   }
-  return Array.from(cats).sort()
+  return Array.from(counts, ([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
 }
 
 export function filterProjects(all: Project[], filters: FilterState): Project[] {
