@@ -1,4 +1,4 @@
-import { mediaFeatures } from '@/data/media'
+import { getAllMedia } from '@/lib/content'
 import { pageMetadata } from '@/lib/seo'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { PageHeader } from '@/components/layout/PageHeader'
@@ -10,10 +10,8 @@ export const metadata = pageMetadata({
   path: '/media',
 })
 
-export default function MediaPage() {
-  const sorted = [...mediaFeatures].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
+export default async function MediaPage() {
+  const sorted = await getAllMedia()
 
   return (
     <main className="px-4 py-8 md:py-12 max-w-2xl mx-auto">

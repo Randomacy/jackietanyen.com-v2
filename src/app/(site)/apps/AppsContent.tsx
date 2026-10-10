@@ -2,12 +2,11 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import type { Project, FilterState } from '@/types/project'
-import type { CategoryCount } from '@/lib/projects'
+import type { CategoryCount } from '@/lib/filters'
 import { FilterBar, EMPTY_FILTERS, activeCount } from '@/components/apps/FilterBar'
 import { ProjectCard } from '@/components/apps/ProjectCard'
 import { ProjectGrid } from '@/components/apps/ProjectGrid'
-import { parseFiltersFromParams, serializeFiltersToParams } from '@/lib/filters'
-import { filterProjects } from '@/lib/projects'
+import { filterProjects, parseFiltersFromParams, serializeFiltersToParams } from '@/lib/filters'
 
 type Props = {
   projects: Project[]

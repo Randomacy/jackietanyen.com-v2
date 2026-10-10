@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { articles } from '@/data/articles'
-import { getMdxContent } from '@/lib/mdx'
+import { getAllArticles, getArticleContent, getHostedArticle } from '@/lib/content'
 import { formatDate } from '@/lib/format'
 import { articleJsonLd, pageMetadata } from '@/lib/seo'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
@@ -14,19 +13,15 @@ type Props = {
 
 export const dynamicParams = false
 
-function getHostedArticle(slug: string) {
-  return articles.find((a) => a.type === 'hosted' && a.slug === slug)
-}
-
 export async function generateStaticParams() {
-  return articles
-    .filter((a) => a.type === 'hosted' && a.slug)
-    .map((a) => ({ slug: a.slug! }))
+  return (await getAllArticles())
+    .filter((a) => a.type === 'hosted')
+    .map((a) => ({ slug: a.slug }))
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
-  const article = getHostedArticle(slug)
+  const article = await getHostedArticle(slug)
   if (!article) return {}
   return pageMetadata({
     hasOwnImage: true,
@@ -40,11 +35,10 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params
-  const article = getHostedArticle(slug)
+  const article = await getHostedArticle(slug)
   if (!article) notFound()
 
-  const mdxContent = getMdxContent('articles', slug)
-  if (!mdxContent) notFound()
+  const mdxContent = await getArticleContent(slug)
 
   const path = `/articles/${slug}`
 
@@ -75,7 +69,7 @@ export default async function ArticlePage({ params }: Props) {
         <p className="text-terminal-dim text-[13px] md:text-sm leading-relaxed">{article.description}</p>
       </header>
 
-      <MdxContent source={mdxContent} />
+      {mdxContent && <MdxContent source={mdxContent} />}
 
       <div className="mt-12 pt-6 border-t border-terminal-border flex flex-col gap-3 text-[13px] sm:flex-row sm:justify-between">
         <Link href="/articles" className="terminal-link inline-block py-1">← all articles</Link>

@@ -1,4 +1,4 @@
-import { articles } from '@/data/articles'
+import { getAllArticles } from '@/lib/content'
 import { pageMetadata } from '@/lib/seo'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { PageHeader } from '@/components/layout/PageHeader'
@@ -10,10 +10,8 @@ export const metadata = pageMetadata({
   path: '/articles',
 })
 
-export default function ArticlesPage() {
-  const sorted = [...articles].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
+export default async function ArticlesPage() {
+  const sorted = await getAllArticles()
 
   return (
     <main className="px-4 py-8 md:py-12 max-w-2xl mx-auto">
@@ -23,8 +21,8 @@ export default function ArticlesPage() {
       </PageHeader>
 
       <ul className="border-t border-terminal-border">
-        {sorted.map((article, i) => (
-          <li key={article.slug ?? `external-${i}`}>
+        {sorted.map((article) => (
+          <li key={article.slug}>
             <ArticleRow article={article} />
           </li>
         ))}

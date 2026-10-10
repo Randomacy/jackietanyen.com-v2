@@ -1,13 +1,13 @@
 export type ArticleType = 'external' | 'hosted'
 
 export type Article = {
-  slug?: string           // only for hosted articles (used as route param)
+  slug: string
   title: string
   publication?: string    // where it was published (e.g. "Medium", "The Star")
   date: string            // ISO date string for sorting
   description: string
   type: ArticleType
-  url?: string            // for external articles
+  url?: string            // for external articles, or the original of a hosted copy
   topics: string[]
 }
 

@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getProjectBySlug, getAllProjects } from '@/lib/projects'
-import { getMdxContent } from '@/lib/mdx'
+import { getAllProjects, getProject, getProjectContent } from '@/lib/content'
 import { pageMetadata } from '@/lib/seo'
 import { StatusBadge } from '@/components/layout/StatusBadge'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
@@ -15,12 +14,12 @@ type Props = {
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return getAllProjects().map((p) => ({ slug: p.slug }))
+  return (await getAllProjects()).map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const project = await getProject(slug)
   if (!project) return {}
   return pageMetadata({
     hasOwnImage: true,
@@ -32,10 +31,10 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ProjectDetailPage({ params }: Props) {
   const { slug } = await params
-  const project = getProjectBySlug(slug)
+  const project = await getProject(slug)
   if (!project) notFound()
 
-  const mdxContent = getMdxContent('projects', slug)
+  const mdxContent = await getProjectContent(slug)
 
   return (
     <main className="px-4 py-8 md:py-12 max-w-2xl mx-auto">

@@ -1,4 +1,5 @@
-import { getAllProjects, getAllCategories } from '@/lib/projects'
+import { getAllProjects } from '@/lib/content'
+import { getCategoryCounts } from '@/lib/filters'
 import { pageMetadata } from '@/lib/seo'
 import { Breadcrumb } from '@/components/layout/Breadcrumb'
 import { PageHeader } from '@/components/layout/PageHeader'
@@ -10,9 +11,9 @@ export const metadata = pageMetadata({
   path: '/apps',
 })
 
-export default function AppsPage() {
-  const projects = getAllProjects()
-  const categories = getAllCategories()
+export default async function AppsPage() {
+  const projects = await getAllProjects()
+  const categories = getCategoryCounts(projects)
 
   return (
     <main className="px-4 py-8 md:py-12 max-w-5xl mx-auto">

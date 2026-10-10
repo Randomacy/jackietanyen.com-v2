@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { FilterPill } from './FilterPill'
 import type { FilterState, ProjectType, ProjectStatus, ProjectOrigin } from '@/types/project'
-import type { CategoryCount } from '@/lib/projects'
+import type { CategoryCount } from '@/lib/filters'
 import { toggleFilter } from '@/lib/filters'
 
 type Props = {

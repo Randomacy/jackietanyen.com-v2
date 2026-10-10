@@ -1,10 +1,14 @@
 import type { MetadataRoute } from 'next'
-import { getAllProjects } from '@/lib/projects'
-import { articles } from '@/data/articles'
-import { mediaFeatures } from '@/data/media'
+import { getAllArticles, getAllMedia, getAllProjects } from '@/lib/content'
 import { absoluteUrl } from '@/lib/site'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [allProjects, articles, mediaFeatures] = await Promise.all([
+    getAllProjects(),
+    getAllArticles(),
+    getAllMedia(),
+  ])
+
   const sections: MetadataRoute.Sitemap = [
     { url: absoluteUrl('/'),         changeFrequency: 'monthly', priority: 1 },
     { url: absoluteUrl('/about'),    changeFrequency: 'monthly', priority: 0.8 },
@@ -13,14 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl('/media'),    changeFrequency: 'monthly', priority: 0.7 },
   ]
 
-  const projects: MetadataRoute.Sitemap = getAllProjects().map((p) => ({
+  const projects: MetadataRoute.Sitemap = allProjects.map((p) => ({
     url: absoluteUrl(`/apps/${p.slug}`),
     changeFrequency: 'yearly',
     priority: 0.6,
   }))
 
   const hostedArticles: MetadataRoute.Sitemap = articles
-    .filter((a) => a.type === 'hosted' && a.slug)
+    .filter((a) => a.type === 'hosted')
     .map((a) => ({
       url: absoluteUrl(`/articles/${a.slug}`),
       lastModified: a.date,
