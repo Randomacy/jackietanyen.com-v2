@@ -25,6 +25,12 @@ export function ProjectCard({ project }: Props) {
         {project.shortDescription}
       </p>
 
+      {project.award && (
+        <p className="mb-3 text-[11px] md:text-xs text-terminal-yellow leading-snug">
+          <span aria-hidden="true">★ </span>{project.award}
+        </p>
+      )}
+
       {/* Footer row */}
       <div className="mt-auto flex flex-wrap items-center gap-1">
         <StatusBadge variant="origin" value={project.origin} />

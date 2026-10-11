@@ -5,7 +5,7 @@ export const SITE_NAME = 'Jackie Tan Yen'
 export const SITE_TAGLINE = 'serial founder. phd in applied ai.'
 
 export const SITE_DESCRIPTION =
-  'Jackie Tan Yen is a Singapore-based serial founder (4 startups, 2 exits) with a PhD in applied AI. Projects, hackathon builds, writing, talks, and press.'
+  'Jackie Tan Yen is a Singapore-based serial founder with 2 exits and a PhD in applied AI, now building brain-computer interfaces at Mind Interface Company. Projects, hackathon builds, writing, talks, and press.'
 
 export const CONTACT_EMAIL = 'jackietanyen@gmail.com'
 

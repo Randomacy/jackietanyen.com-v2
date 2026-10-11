@@ -4,7 +4,7 @@ import { TerminalPrompt } from '@/components/terminal/TerminalPrompt'
 import { TerminalLine } from '@/components/terminal/TerminalLine'
 import { BlinkingCursor } from '@/components/terminal/BlinkingCursor'
 import { JsonLd } from '@/components/JsonLd'
-import { getAllProjects } from '@/lib/content'
+import { getAllProjects, getProjectStats } from '@/lib/content'
 import { pageMetadata, personJsonLd, websiteJsonLd } from '@/lib/seo'
 import { CONTACT_EMAIL } from '@/lib/site'
 
@@ -13,7 +13,7 @@ export const metadata = pageMetadata({ path: '/' })
 const linkClass = 'text-terminal-blue hover:text-terminal-accent transition-colors duration-150 hover:underline underline-offset-2'
 
 export default async function HomePage() {
-  const projects = await getAllProjects()
+  const [projects, stats] = await Promise.all([getAllProjects(), getProjectStats()])
   const previewProjects = projects.slice(0, 3)
   const remaining = projects.length - previewProjects.length
 
@@ -39,7 +39,7 @@ export default async function HomePage() {
                 jackie tan yen &mdash; serial founder. phd in applied ai.
               </h1>
               <TerminalLine color="dim">
-                11 ventures, 4 startups, 2 exits &middot; 17 hackathons, 9 wins
+                {stats.startups} startups, {stats.exits} exits &middot; {stats.hackathons} hackathons, {stats.wins} wins
               </TerminalLine>
             </section>
 

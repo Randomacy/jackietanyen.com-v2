@@ -115,6 +115,10 @@ export default config({
         }),
         categories: topics('Topics'),
         builtAt: fields.text({ label: 'Built (year)', description: 'e.g. 2026' }),
+        award: fields.text({
+          label: 'Award / placing',
+          description: 'e.g. "1st place — SingHacks 2025". Shown as a badge, and counted as a win in the homepage stats. Leave empty if it didn\'t place.',
+        }),
         content: writeup('Write-up', 'projects'),
       },
     }),
