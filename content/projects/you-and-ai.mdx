@@ -1,0 +1,84 @@
+---
+title: You & AI
+shortDescription: 'A flower that responds with you, and an artwork that remembers with you. Bloom, a desktop companion, reacts to live EEG and facial expressions, and a recorded moment becomes a co-created artwork of EEG brushstrokes and TRIBE v2 "fireworks". Built with Faith at the Common Ground Makeathon: Design x Tech x Culture. Top 4 in the Design × Tech track, October 2026.'
+status: archived
+origin: hackathon
+type: writeup-only
+categories:
+  - brain-computer interface
+  - generative art
+  - computer vision
+  - hardware
+builtAt: '2026'
+---
+
+11 October 2026. Built with Faith in a day at the [Common Ground Makeathon: Design x Tech x Culture](https://luma.com/yjffwqr2), held at SQ Collective x Gen-AI Labs in Singapore. **Top 4 in the Design × Tech track.** Faith brought the artistic vision and the AI side. I did the EEG and Bloom, the responsive companion. Code: [github.com/Randomacy/You-and-AI](https://github.com/Randomacy/You-and-AI).
+
+## the format
+
+Common Ground was a one-day makeathon about what happens when people from different disciplines get the same tools and space to experiment: designers, researchers, architects, filmmakers, musicians, technologists, and people who registered before working out which one they were. Over a hundred people came. It was organised by Carissa Jayanto, Tanisha Shaw and Kian Seng Ng with SQ Collective, and Codex was the main technology partner, with every participant getting Codex credits.
+
+There were two tracks, Design × Tech and Culture × Tech, and no fixed medium or outcome: a website, a visual experiment, an AI experience, a speculative prototype. Making ran from 10am to the 3:15pm submission deadline, with a demo video of under 2 minutes. The judges then picked three finalists per track to present, and US$5,000 in Codex credits was split across six awards.
+
+![You & AI — a flower that responds with you, an artwork that remembers with you](/assets/projects/you-and-ai/cover.jpg)
+
+## the question
+
+A recording preserves sights and sounds. But what about our inner experience?
+
+Video tells you where you were and what you heard. It doesn't hold what it felt like to be there. We wanted to see what a human-AI *co-experience* could look like: one where your own signals become part of the interface, and the machine's interpretation becomes creative material instead of a verdict.
+
+![A recording preserves sights and sounds. But what about our inner experience?](/assets/projects/you-and-ai/inspiration.jpg)
+
+## two ways of experiencing together
+
+![Two ways of experiencing together: a responsive companion, and a co-created artwork](/assets/projects/you-and-ai/two-ways.jpg)
+
+1. **In the moment: a responsive companion.** Bloom is an eight-petal flower on your desktop that shows estimated happy, sad, focused and sleepy states from live EEG and facial expressions.
+2. **As a memory: a co-created artwork.** One recorded encounter, two perspectives. Faith's EEG becomes brushstrokes. TRIBE's predicted brain responses to the same video and audio become fireworks.
+
+## part one: Bloom responds with you
+
+![Bloom responds with you: happy, sad, sleepy and focused states](/assets/projects/you-and-ai/bloom-states.jpg)
+
+8-channel EEG plus a webcam feed into Bloom.
+
+- **Webcam**: MediaPipe Face Landmarker blendshape scores drive simple happy, sad and sleepy display states. Frames are processed in memory and never saved.
+- **EEG**: a beta / (alpha + theta) focus-like ratio over four-second windows, updated every two seconds, with signal checks that flag weak or artifact-heavy windows. It works with an OpenBCI Cyton (Fp1/Fp2) or a Muse 2 (AF7/AF8), and a threshold switches Bloom to *focused*.
+- **Priority**: camera expressions win. A neutral face lets the EEG focus state show through. Manual keys 1–6 override both.
+
+Each state has its own motion. Happy petals spin faster, sad petals loosen and fall, sleepy is a slow orbit and a yawn, and focused gets glasses and a precise rhythm. Bloom talks in short, curious prompts like *"What are you noticing?"*, *"Something good is growing."* and *"Let's let the day soften."* It never says *"You are anxious."* The point is to reflect a state back as a gentle invitation to notice, not to diagnose it.
+
+## part two: a memory we make together
+
+![One encounter, two perspectives: video and audio through TRIBE v2 into fireworks, 8-channel EEG through signal mapping into brushstrokes](/assets/projects/you-and-ai/pipeline.jpg)
+
+One encounter, recorded two ways:
+
+- **The recorded world**: iPhone video and audio go through Meta's [TRIBE v2](https://github.com/facebookresearch/tribev2), which predicts how brains in general respond to that media. The output is drawn as AI *fireworks*.
+- **The recorded self**: 8-channel EEG (Fp1, Fp2, Fz, Cz, T7, T8, Pz, Oz) from a NeuroPawn Knight board through BrainFlow is mapped directly. EEG change sets stroke direction and EEG amplitude sets light versus dark, giving human *brushstrokes*.
+
+Played back together, the result is a 15-second loop with four panels: what I saw (the video), what I heard (the words timed to the audio), what I felt (the raw EEG), and what we made (human marks plus AI sparks). Its title: *eight rhythms, together*.
+
+![The recorded experience: video, transcript, raw EEG and the co-created artwork playing together](/assets/projects/you-and-ai/recorded-experience.jpg)
+
+## demo
+
+The 2-minute pitch, in seven slides, with Bloom running live on the desktop from the webcam.
+
+<Video src="/assets/projects/you-and-ai/demo.mp4" />
+
+## being honest about the signals
+
+We were deliberate about not overclaiming:
+
+- The camera rules and EEG focus thresholds are prototype heuristics, not measures of emotion, attention or mental health.
+- We also trained an EEG emotion model on the public INTERFACES dataset, an RBF SVM with nested cross-validation grouped by subject. It got 48% valence and 52% arousal balanced accuracy on people it hadn't seen, which is chance level. So the live interface says **Unsure** rather than pretend.
+- TRIBE v2 predicts population-level fMRI responses to media. It doesn't read the wearer's brain, which is exactly why it fits as the "other perspective" next to the real EEG.
+- Everything runs locally. Webcam frames aren't stored, and EEG and media recordings stay on the machine.
+
+## what's next
+
+What would *your* experience portrait look like? Next is more people, personal calibration, and art shaped by each participant.
+
+![Jackie & Faith wearing the EEG headsets](/assets/projects/you-and-ai/team.jpg)
