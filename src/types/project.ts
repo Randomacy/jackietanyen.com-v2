@@ -11,6 +11,7 @@ export type Project = {
   origin: ProjectOrigin
   categories: string[]
   builtAt?: string
+  award?: string          // e.g. "1st place — SingHacks 2025"
 }
 
 export type FilterState = {

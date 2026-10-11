@@ -35,9 +35,25 @@ export const getAllProjects = cache(async (): Promise<Project[]> => {
       origin: entry.origin,
       categories: [...entry.categories],
       builtAt: entry.builtAt || undefined,
+      award: entry.award || undefined,
     }))
     .sort((a, b) => (rank.get(a.slug) ?? -1) - (rank.get(b.slug) ?? -1) || a.title.localeCompare(b.title))
 })
+
+// Headline numbers for the homepage, derived from the projects themselves:
+// startups are projects with origin "startup", exits are those acquired,
+// hackathons are hackathon projects plus any other project that won an award
+// at one (e.g. a startup that came out of a hackathon), and wins are projects
+// with an award.
+export async function getProjectStats() {
+  const projects = await getAllProjects()
+  return {
+    startups: projects.filter((p) => p.origin === 'startup').length,
+    exits: projects.filter((p) => p.status === 'acquired').length,
+    hackathons: projects.filter((p) => p.origin === 'hackathon' || p.award).length,
+    wins: projects.filter((p) => p.award).length,
+  }
+}
 
 export async function getProject(slug: string) {
   return (await getAllProjects()).find((p) => p.slug === slug)

@@ -63,6 +63,12 @@ export default async function ProjectDetailPage({ params }: Props) {
             ))}
           </div>
 
+          {project.award && (
+            <div className="text-[13px] text-terminal-yellow">
+              <span aria-hidden="true">★ </span>{project.award}
+            </div>
+          )}
+
           {project.builtAt && (
             <div className="text-xs text-terminal-dim">
               built: {project.builtAt}
